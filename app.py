@@ -1,5 +1,7 @@
 import eel
 from get_time import GetTime
+from pythonping import ping
+
 eel.init('web')
 
 @eel.expose
@@ -9,5 +11,13 @@ def runTime(num):
     except:
         error = 'Error: invalid entry'
         return error
+
+@eel.expose
+def ping_ip(ip):
+    try:
+        response_list = ping(ip, size=32, count=10)
+        return response_list.rtt_avg_ms
+    except:
+        return "Host unreachable"
 
 eel.start('main.html')
