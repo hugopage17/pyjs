@@ -1,10 +1,9 @@
 import time
+import eel
 
-class GetTime():
-    def __init__():
-        pass
-
-    def time(num):
+class GetTime:
+    @eel.expose
+    def __init__(num):
         try:
             return int(num)*2
         except:

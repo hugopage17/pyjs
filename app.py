@@ -2,10 +2,12 @@ import eel
 from get_time import GetTime
 eel.init('web')
 
-timer = GetTime
-
 @eel.expose
-def runTime(n):
-    timer.time(n)
+def runTime(num):
+    try:
+        return int(num)*2
+    except:
+        error = 'Error: invalid entry'
+        return error
 
 eel.start('main.html')
