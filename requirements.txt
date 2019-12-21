@@ -1,0 +1,2 @@
+eel==0.12.0
+pythonping==1.0.8
