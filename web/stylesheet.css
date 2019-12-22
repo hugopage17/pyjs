@@ -1,0 +1,16 @@
+#name{
+  width:60%;
+  margin:auto;
+  outline:none;
+  border:none;
+  border-bottom: 1px solid black;
+  background:none;
+}
+
+.graph-wrapper{
+  width:40%;
+  margin:auto;
+  height:50vh;
+  position: fixed;
+  bottom: 0;
+}
