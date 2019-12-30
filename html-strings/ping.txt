@@ -1,8 +1,26 @@
-<div>
-  <input type='text' id='name'></input><button onclick="connect()">Connect</button>
+<div class='panel-wrapper'>
+  <input type='text' id='name' placeholder='Address'></input>
+  <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size'></input>
+  <datalist id="sizes">
+    <option value="32">
+    <option value="64">
+    <option value="128">
+    <option value="256">
+    <option value="1024">
+    <option value="4096">
+    <option value="8192">
+  </datalist>
+  <input list="timeout" name="myTime" id='timeout' placeholder='Timeout'></input>
+  <datalist id="timeout">
+    <option value="10">
+    <option value="100">
+    <option value="1000">
+  </datalist>
+  <button onclick="connect()" class='panel-but'>Start</button><br/>
+  <div id='ping-counts'></div>
+  <label id='latency-avg' class='labels'></label>
+  <label id='packets-sent' class='labels'></label>
   <div class='graph-wrapper'>
-    <canvas id="myChart" width="120" height="80"></canvas><br/>
-    <label id='current-ping'></label><br/><br/>
-    <label id='latency-avg'></label>
+    <canvas id="myChart" width="120" height="80"></canvas><br/><br/>
   </div>
 </div>

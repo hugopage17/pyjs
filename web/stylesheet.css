@@ -4,6 +4,16 @@ body{
   height: 100vh;
   padding:0;
   margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 #top-bar{
@@ -12,20 +22,19 @@ body{
 }
 
 #name{
-  width:60%;
+  width:40%;
   margin:auto;
   outline:none;
   border:none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   background:none;
+  color:white;
 }
 
 .graph-wrapper{
   width:100%;
   margin:auto;
-  height:40vh;
-  position: fixed;
-  bottom: 0;
+  max-height: 400px;
 }
 
 #sidebar{
@@ -38,4 +47,40 @@ body{
 #main-panel{
   float: left;
   width:85%;
+}
+
+.panel-wrapper{
+  margin:20px;
+}
+
+#ping-counts{
+  height: 20vh;
+  overflow: auto;
+  border:1px solid #009de0;
+  margin:10px;
+}
+
+#ping-count-single{
+  border-bottom: 1px solid white;
+  color:white;
+  padding: 10px;
+  text-align: left;
+}
+
+#inner-ping-count{
+  margin-right: 60px;
+}
+
+.panel-but{
+  border-radius: 5px;
+  background: none;
+  color:#009de0;
+  border:1px solid #009de0;
+  padding:10px;
+  cursor: pointer;
+}
+
+.labels{
+  color:white;
+  margin-right: 20px;
 }
