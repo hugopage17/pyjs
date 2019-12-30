@@ -1,8 +1,14 @@
 import eel
 from pythonping import ping
 import pyshark
+import getpass
 
 eel.init('web')
+
+@eel.expose
+def get_user():
+    user = getpass.getuser()
+    return user
 
 @eel.expose
 def ping_ip(ip):
