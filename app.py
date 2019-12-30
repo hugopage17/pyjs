@@ -1,5 +1,6 @@
 import eel
 from pythonping import ping
+import pyshark
 
 eel.init('web')
 
@@ -11,4 +12,10 @@ def ping_ip(ip):
     except:
         return "Host unreachable"
 
-eel.start('main.html', size=(1040, 820))
+@eel.expose
+def getHtml(file):
+    f = open('html-strings/'+file, "r")
+    html = f.read()
+    return html
+
+eel.start('main.html', size=(1240, 860))

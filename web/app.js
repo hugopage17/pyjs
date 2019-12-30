@@ -29,8 +29,6 @@ window.onload = function() {
   window.myLine = new Chart(ctx, config);
 }
 function connect() {
-  document.getElementById('first-page').hidden = true
-  document.getElementById('second-page').hidden = false
   setInterval(async function(){
     count.push(c)
     c++

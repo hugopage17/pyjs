@@ -1,3 +1,11 @@
+body{
+  background: linear-gradient(to bottom right,#595959,#363636);
+  background-repeat:no-repeat;
+  height: 100vh;
+  padding:0;
+  margin:0;
+}
+
 #name{
   width:60%;
   margin:auto;
@@ -8,9 +16,21 @@
 }
 
 .graph-wrapper{
-  width:40%;
+  width:100%;
   margin:auto;
-  height:50vh;
+  height:40vh;
   position: fixed;
   bottom: 0;
+}
+
+#sidebar{
+  height: 100vh;
+  background-color: black;
+  width:10%;
+  float: left;
+}
+
+#main-panel{
+  float: left;
+  width:85%;
 }

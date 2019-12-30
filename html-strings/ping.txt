@@ -1,0 +1,8 @@
+<div>
+  <input type='text' id='name'></input><button onclick="connect()">Connect</button>
+  <div class='graph-wrapper'>
+    <canvas id="myChart" width="120" height="80"></canvas><br/>
+    <label id='current-ping'></label><br/><br/>
+    <label id='latency-avg'></label>
+  </div>
+</div>

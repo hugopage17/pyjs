@@ -3,21 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Python JS</title>
+    <script type="text/javascript" src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="/app.js"></script>
-    <script type="text/javascript" src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+    <script type="text/javascript" src="/sidebar.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
   <body>
-    <div id='first-page'>
-      <input type='text' id='name'></input><button onclick="connect()">Connect</button>
-    </div>
-    <div id='second-page'>
-      <div class='graph-wrapper'>
-        <canvas id="myChart" width="120" height="80"></canvas><br/>
-        <label id='current-ping'></label><br/><br/>
-        <label id='latency-avg'></label>
-      </div>
+    <div id='wrapper'>
+      <div id='sidebar'></div>
+      <div id='main-panel'></div>
     </div>
   </body>
 </html>
