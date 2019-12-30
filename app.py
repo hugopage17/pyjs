@@ -40,6 +40,8 @@ def wifi_scan():
             name = i[1]
         elif i[0] == '         Signal             ':
             strength = i[1]
+            strength = strength.split('%')[0]
+            strength = int(strength)
         try:
             obj = {
                 "name":name,
