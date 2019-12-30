@@ -1,26 +1,30 @@
 <div class='panel-wrapper'>
-  <input type='text' id='name' placeholder='Address'></input>
-  <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size'></input>
-  <datalist id="sizes">
-    <option value="32">
-    <option value="64">
-    <option value="128">
-    <option value="256">
-    <option value="1024">
-    <option value="4096">
-    <option value="8192">
-  </datalist>
-  <input list="timeout" name="myTime" id='timeout' placeholder='Timeout'></input>
-  <datalist id="timeout">
-    <option value="10">
-    <option value="100">
-    <option value="1000">
-  </datalist>
-  <button onclick="connect()" class='panel-but'>Start</button><br/>
+  <div id='opt-menu'>
+    <input type='text' id='name' placeholder='Address' class='ping-opt'></input>
+    <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size' class='ping-opt'></input>
+    <datalist id="sizes">
+      <option value="32">
+      <option value="64">
+      <option value="128">
+      <option value="256">
+      <option value="1024">
+      <option value="4096">
+      <option value="8192">
+    </datalist>
+    <input list="t-out" name="myTime" id='timeout' placeholder='Timeout' class='ping-opt' style="margin-right:40px;"></input>
+    <datalist id="t-out">
+      <option value="10">
+      <option value="100">
+      <option value="1000">
+    </datalist>
+    <button onclick="startPing()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopPing()" class='panel-but'>Stop</button><br/>
+  </div>
   <div id='ping-counts'></div>
+  <div class='graph-wrapper'>
+    <canvas id="myChart" width="120" height="80"></canvas><br/>
+  </div>
+  <label id='min' class='labels'></label>
+  <label id='max' class='labels'></label>
   <label id='latency-avg' class='labels'></label>
   <label id='packets-sent' class='labels'></label>
-  <div class='graph-wrapper'>
-    <canvas id="myChart" width="120" height="80"></canvas><br/><br/>
-  </div>
 </div>

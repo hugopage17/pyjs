@@ -22,13 +22,14 @@ code {
 }
 
 #name{
-  width:40%;
+  width:30%;
   margin:auto;
   outline:none;
   border:none;
   border-bottom: 1px solid white;
   background:none;
   color:white;
+  margin-right: 40px;
 }
 
 .graph-wrapper{
@@ -53,15 +54,20 @@ code {
   margin:20px;
 }
 
+#opt-menu{
+  margin:auto;
+  width:100%;
+}
+
 #ping-counts{
-  height: 20vh;
+  height: 26vh;
   overflow: auto;
   border:1px solid #009de0;
   margin:10px;
 }
 
 #ping-count-single{
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(0,157,224,0.5);
   color:white;
   padding: 10px;
   text-align: left;
@@ -78,9 +84,18 @@ code {
   border:1px solid #009de0;
   padding:10px;
   cursor: pointer;
+  outline:none;
+}
+
+.panel-but:hover{
+  background-color: #5c5c5c;
 }
 
 .labels{
   color:white;
   margin-right: 20px;
+}
+
+.ping-opt{
+  width:15%;
 }
