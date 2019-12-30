@@ -26,9 +26,7 @@ var config = {
 }
 window.onload = async function() {
   let user = await eel.get_user()();
-  document.getElementById('user').innerText = `Welcome ${user}`
-  var ctx = document.getElementById('myChart').getContext('2d');
-  window.myLine = new Chart(ctx, config);
+  document.getElementById('user').innerText = `Welcome ${user}`  
 }
 function connect() {
   setInterval(async function(){
