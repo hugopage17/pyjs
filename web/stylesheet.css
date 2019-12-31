@@ -41,8 +41,9 @@ code {
 #sidebar{
   height: 100vh;
   background-color: #303030;
-  width:10%;
+  width:5%;
   float: left;
+  border-right: 1px solid rgba(0,157,224,1);
 }
 
 #main-panel{
