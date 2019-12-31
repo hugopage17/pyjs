@@ -1,7 +1,7 @@
 <div class='panel-wrapper'>
   <div id='opt-menu'>
-    <input type='text' id='name' placeholder='Address' class='ping-opt'></input>
-    <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size' class='ping-opt'></input>
+    <input type='text' id='name' placeholder='Address' class='panel-input'></input>
+    <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size' class='panel-input'></input>
     <datalist id="sizes">
       <option value="32">
       <option value="64">
@@ -11,7 +11,7 @@
       <option value="4096">
       <option value="8192">
     </datalist>
-    <input list="t-out" name="myTime" id='timeout' placeholder='Timeout' class='ping-opt' style="margin-right:40px;"></input>
+    <input list="t-out" name="myTime" id='timeout' placeholder='Timeout' class='panel-input' style="margin-right:40px;"></input>
     <datalist id="t-out">
       <option value="10">
       <option value="100">

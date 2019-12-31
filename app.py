@@ -61,6 +61,8 @@ def wifi_scan():
                 new_arr.append(arr[h])
         except:
             pass
+    if len(new_arr) == 0:
+        new_arr.append(arr[0])
     return new_arr
 
 eel.start('main.html', size=(1240, 860))

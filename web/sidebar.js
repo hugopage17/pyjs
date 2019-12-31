@@ -1,7 +1,11 @@
 var sidebarItems = [
   {
-    name:'ping',
+    name:'Ping',
     file:'ping.txt'
+  },
+  {
+    name: 'Wifi Scan',
+    file:'wifi.txt'
   }
 ]
 
@@ -19,7 +23,11 @@ window.onload = async function(){
       html = doc.documentElement
       document.getElementById('main-panel').appendChild(html)
       var ctx = document.getElementById('myChart').getContext('2d');
-      window.myLine = new Chart(ctx, config);
+      if(item.name == 'Ping'){
+        window.myLine = new Chart(ctx, config);
+      }else if(item.name == 'Wifi Scan'){
+        window.myLine = new Chart(ctx, barConfig);
+      }
       document.getElementById('myChart').style.height = '500px';
     }
   })

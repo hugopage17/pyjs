@@ -1,0 +1,22 @@
+<div class='panel-wrapper'>
+  <div id='opt-menu'>
+    <input type='text' id='name' placeholder='SSID' class='panel-input'></input>
+    <input list="strength" name="myBrowser" placeholder='Signal Strength (%)' class='panel-input'></input>
+    <datalist id="strength">
+      <option value="100">
+      <option value="90">
+      <option value="80">
+      <option value="70">
+      <option value="60">
+      <option value="50">
+      <option value="40">
+      <option value="30">
+      <option value="20">
+      <option value="10">
+    </datalist>
+    <button onclick="startScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
+  </div>
+  <div class='graph-wrapper'>
+    <canvas id="myChart" width="120" height="80"></canvas><br/>
+  </div>
+</div>

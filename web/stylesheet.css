@@ -21,7 +21,7 @@ code {
   color:white;
 }
 
-#name{
+.panel-input{
   width:30%;
   margin:auto;
   outline:none;
@@ -96,6 +96,6 @@ code {
   margin-right: 20px;
 }
 
-.ping-opt{
+.panel-input{
   width:15%;
 }

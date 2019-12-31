@@ -1,31 +1,6 @@
 let latency = []
 let count = []
 var c = 1
-var config = {
-    type: 'line',
-    data: {
-        labels: count,
-        datasets: [{
-            label: 'Latency ms',
-            data: latency,
-            fill: false,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-        maintainAspectRatio: false
-    }
-}
-
 let max = 0
 let min = 0
 
@@ -86,4 +61,18 @@ function startPing() {
 
 function stopPing(){
   clearInterval(runPing)
+}
+
+let signals = []
+let ssids = []
+async function startScan(){
+  let data = await eel.wifi_scan()();
+  for (var i = 0; i < data.length; i++) {
+    signals.push(data[i].signal)
+  }
+  for (var j = 0; j < data.length; j++) {
+    ssids.push(data[j].name)
+  }
+  barConfig.data.datasets[0].data = signals
+  window.myLine.update()
 }
