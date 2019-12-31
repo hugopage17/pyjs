@@ -65,4 +65,11 @@ def wifi_scan():
         new_arr.append(arr[0])
     return new_arr
 
+@eel.expose
+def export():
+    results = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=Bssid"])
+    results = results.decode("ascii")
+    results = results.replace("\r","")
+    return results
+
 eel.start('main.html', size=(1240, 860))

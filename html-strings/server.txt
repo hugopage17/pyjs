@@ -1,0 +1,4 @@
+<div class='panel-wrapper' name='wifi-scan'>
+  <input id="fileselector" type="file" onchange="browseResult(event)" webkitdirectory directory multiple="false" style="display:none" />
+  <button onclick="getElementById('fileselector').click()">browse</button>
+</div>

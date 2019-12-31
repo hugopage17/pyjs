@@ -1,4 +1,4 @@
-<div class='panel-wrapper'>
+<div class='panel-wrapper' name='ping-test'>
   <div id='opt-menu'>
     <input type='text' id='name' placeholder='Address' class='panel-input'></input>
     <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size' class='panel-input'></input>
@@ -17,7 +17,7 @@
       <option value="100">
       <option value="1000">
     </datalist>
-    <button onclick="startPing()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopPing()" class='panel-but'>Stop</button><br/>
+    <button onclick="startPing()" class='panel-but' style="margin-right:20px;">Start</button><button onclick="stopPing()" class='panel-but'>Stop</button><br/>
   </div>
   <div id='ping-counts'></div>
   <div class='graph-wrapper'>

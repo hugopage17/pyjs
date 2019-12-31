@@ -76,3 +76,14 @@ async function startScan(){
   barConfig.data.datasets[0].data = signals
   window.myLine.update()
 }
+
+async function exportFile(){
+  let data = await eel.export()();
+  console.log(data);
+  Swal.fire('Breakdown',data)
+ }
+
+ function browseResult(e){
+  var fileselector = document.getElementById('fileselector');
+  console.log(fileselector.value);
+}

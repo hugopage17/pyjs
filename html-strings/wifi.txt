@@ -1,4 +1,4 @@
-<div class='panel-wrapper'>
+<div class='panel-wrapper' name='wifi-scan'>
   <div id='opt-menu'>
     <input type='text' id='name' placeholder='SSID' class='panel-input'></input>
     <input list="strength" name="myBrowser" placeholder='Signal Strength (%)' class='panel-input'></input>
@@ -16,7 +16,10 @@
     </datalist>
     <button onclick="startScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
   </div>
-  <div class='graph-wrapper'>
-    <canvas id="myChart" width="120" height="80"></canvas><br/>
+  <div class='graph-wrapper' >
+    <canvas id="myChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
+    <button id='upload-but' class='panel-but' onclick="exportFile()">Export</button>
+    <div id='wifi-displayer'></div>
   </div>
+  <div></div>
 </div>

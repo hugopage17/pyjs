@@ -6,10 +6,23 @@ var sidebarItems = [
   {
     name: 'Wifi Scan',
     file:'wifi.txt'
+  },
+  {
+    name:'Local Server',
+    file:'server.txt'
   }
 ]
 
 window.onload = async function(){
+    var online = navigator.onLine;
+    if(online == false){
+      Swal.fire({
+        icon: 'warning',
+        title: 'No Connection',
+        text: 'You are not connected to the network',
+        footer: '<a href>Why do I have this issue?</a>'
+      })
+    }
   let user = await eel.get_user()();
   document.getElementById('user').innerText = `Welcome ${user}`
   sidebarItems.map((item)=>{
