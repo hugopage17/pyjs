@@ -9,7 +9,7 @@ body{
 }
 
 #wrapper{
-  background: linear-gradient(to bottom right,#595959,#363636);
+  background: linear-gradient(to bottom right,#595959,#242424);
   background-repeat:no-repeat;
   height: 100vh;
 }
@@ -134,4 +134,31 @@ code {
 ::-webkit-scrollbar-thumb {
   background: #009de0;
   border-radius: 10px;
+}
+
+.loader {
+  border: 16px solid #606060; /* Light grey */
+  border-top: 16px solid #009de0; /* Blue */
+  border-radius: 50%;
+  width: 360px;
+  height: 360px;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#ip-discovered{
+  height: 26vh;
+  overflow: auto;
+  border:1px solid #009de0;
+  margin:10px;
+}
+
+#inner-ip-scan{
+  color:white;
+  border-bottom: 1px solid rgba(0,157,224,0.5);
+  padding:10px;
 }

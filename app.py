@@ -4,6 +4,7 @@ import getpass
 import subprocess
 from scapy.all import *
 import time
+from getmac import get_mac_address
 
 eel.init('web')
 
@@ -86,7 +87,6 @@ def export():
 
 @eel.expose
 def capture_traffic(ip):
-    print(ip)
     tx_rate = 0
     pkt = sniff(count=100,filter="tcp host "+ip)
     for p in range(len(pkt)):
@@ -101,5 +101,32 @@ def capture_traffic(ip):
         'types':packet_types
     }
     return obj
+
+@eel.expose
+def ip_scan(range):
+    range = range.split('-')
+    last_oct = range[1]
+    first_oct = str(range[0]).split('.')[3]
+    range = str(range[0]).split('.')
+    range.remove(range[3])
+    finder = int(first_oct)
+    all_ips = []
+    array_to_return = []
+    range = '.'.join(range)
+    while finder <= int(last_oct):
+        ip = range+'.'+str(finder)
+        all_ips.append(ip)
+        finder+=1
+    for i in all_ips:
+        response = ping(i, size=32, timeout=3, count=1)
+        res = str(response._responses[0])
+        if res != 'Request timed out':
+            ip_mac = get_mac_address(ip=i)
+            obj = {
+                'ip':i,
+                'mac':ip_mac
+            }
+            array_to_return.append(obj)
+    return array_to_return
 
 eel.start('main.html', size=(1240, 860))

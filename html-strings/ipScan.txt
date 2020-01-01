@@ -1,0 +1,8 @@
+<div class='panel-wrapper' name='ip-scan'>
+  <div id='opt-menu'>
+    <input placeholder='Example: 192.168.0.1-100 ' class='panel-input' id='ip-range'></input>
+    <button onclick="startScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
+    <div class="loader" id='spinner' hidden='true'></div>
+    <div id='ip-discovered'></div>
+  </div>
+</div>

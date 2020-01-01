@@ -14,6 +14,10 @@ var sidebarItems = [
   {
     name:'Traffic',
     file:'traffic.txt'
+  },
+  {
+    name:'IP Scan',
+    file:'ipScan.txt'
   }
 ]
 

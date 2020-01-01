@@ -112,3 +112,25 @@ function startCP(){
 function stopCP(){
   clearInterval(runCT)
 }
+
+async function startScan(){
+  range = document.getElementById('ip-range').value
+  document.getElementById('spinner').hidden = false
+  let results = await eel.ip_scan(range)()
+  document.getElementById('spinner').hidden = true
+  var displayer = document.getElementById('ip-discovered')
+  for (var i = 0; i < results.length; i++) {
+    var d = document.createElement('div')
+    d.id = 'inner-ip-scan'
+    var ip = document.createElement('label')
+    ip.innerText = `IP Address: ${results[i].ip}`
+    ip.style.marginRight = '40px'
+    if(results[i].mac != null){
+      var mac = document.createElement('label')
+      mac.innerText = `MAC Address: ${results[i].mac}`
+    }
+    d.appendChild(ip)
+    d.appendChild(mac)
+    displayer.appendChild(d)
+  }
+}
