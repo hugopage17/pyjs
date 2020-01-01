@@ -1,6 +1,5 @@
 <div class='panel-wrapper' name='wifi-scan'>
   <div id='opt-menu'>
-    <input type='text' id='ssid-input' placeholder='SSID' class='panel-input'></input>
     <input list="strength" name="myBrowser" placeholder='Signal Strength (%)' class='panel-input' id='sig-stn'></input>
     <datalist id="strength">
       <option value="100">

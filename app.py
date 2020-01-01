@@ -2,6 +2,8 @@ import eel
 from pythonping import ping
 import getpass
 import subprocess
+from scapy.all import *
+import time
 
 eel.init('web')
 
@@ -25,7 +27,11 @@ def get_html(file):
     return html
 
 @eel.expose
-def wifi_scan():
+def wifi_scan(stn):
+    try:
+        stn = int(stn)
+    except:
+        pass
     results = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=Bssid"])
     results = results.decode("ascii")
     results = results.replace("\r","")
@@ -63,6 +69,12 @@ def wifi_scan():
             pass
     if len(new_arr) == 0:
         new_arr.append(arr[0])
+    if stn is not '':
+        sig_filter = []
+        for s in new_arr:
+            if stn <= s['signal']:
+                sig_filter.append(s)
+        new_arr = sig_filter
     return new_arr
 
 @eel.expose
@@ -71,5 +83,23 @@ def export():
     results = results.decode("ascii")
     results = results.replace("\r","")
     return results
+
+@eel.expose
+def capture_traffic(ip):
+    print(ip)
+    tx_rate = 0
+    pkt = sniff(count=100,filter="tcp host "+ip)
+    for p in range(len(pkt)):
+        new_p = raw(pkt[p])
+        tx_rate += len(new_p)
+    tx_rate = tx_rate/1000
+    each_type = str(pkt).split(' ')
+    each_type[4] = str(each_type[4]).split('>')[0]
+    packet_types = [each_type[1], each_type[2], each_type[3], each_type[4]]
+    obj = {
+        'rate':tx_rate,
+        'types':packet_types
+    }
+    return obj
 
 eel.start('main.html', size=(1240, 860))

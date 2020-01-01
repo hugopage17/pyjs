@@ -1,0 +1,15 @@
+<div class='panel-wrapper' name='traffic-capture'>
+  <div id='opt-menu'>
+    <input placeholder='Address' class='panel-input' id='ip-add'></input>
+    <button onclick="startCP()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopCP()" class='panel-but'>Stop</button><br/>
+  </div>
+  <div class='graph-wrapper' >
+    <canvas id="myChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
+    <label class='labels' id='traffic-txt' style="margin-right:40px;"></label>
+    <label class='labels' id='tcp' style="margin-right:20px;"></label>
+    <label class='labels' id='udp' style="margin-right:20px;"></label>
+    <label class='labels' id='icmp' style="margin-right:20px;"></label>
+    <label class='labels' id='other' style="margin-right:20px;"></label>
+  </div>
+  <div></div>
+</div>

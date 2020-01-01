@@ -1,5 +1,6 @@
 let latency = []
 let count = []
+let txRate = []
 var c = 1
 let max = 0
 let min = 0
@@ -66,8 +67,8 @@ function stopPing(){
 let signals = []
 let ssids = []
 async function startScan(){
-  let data = await eel.wifi_scan()();
-  const ssidInput = document.getElementById('ssid-input').value
+  const sigStn = document.getElementById('sig-stn').value
+  let data = await eel.wifi_scan(sigStn)();
   for (var i = 0; i < data.length; i++) {
     signals.push(data[i].signal)
   }
@@ -80,11 +81,34 @@ async function startScan(){
 
 async function exportFile(){
   let data = await eel.export()();
-  console.log(data);
   Swal.fire('Breakdown',data)
  }
-
  function browseResult(e){
   var fileselector = document.getElementById('fileselector');
   console.log(fileselector.value);
+}
+
+async function captureTraffic(){
+  count.push(c)
+  const ip = document.getElementById('ip-add').value
+  let traffic = await eel.capture_traffic(ip)();
+  txRate.push(traffic.rate)
+  trafficConfig.data.datasets[0].data = txRate
+  window.myLine.update()
+  c++
+  document.getElementById('traffic-txt').innerText = `TX Rate: ${traffic.rate}kb`
+  document.getElementById('tcp').innerText = `Packet:     ${traffic.types[0]}`
+  document.getElementById('udp').innerText = traffic.types[1]
+  document.getElementById('icmp').innerText = traffic.types[2]
+  document.getElementById('other').innerText = traffic.types[3]
+}
+
+let runCT
+
+function startCP(){
+  runCT = setInterval(captureTraffic, 1000)
+}
+
+function stopCP(){
+  clearInterval(runCT)
 }

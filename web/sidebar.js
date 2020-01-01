@@ -10,6 +10,10 @@ var sidebarItems = [
   {
     name:'Local Server',
     file:'server.txt'
+  },
+  {
+    name:'Traffic',
+    file:'traffic.txt'
   }
 ]
 
@@ -40,6 +44,9 @@ window.onload = async function(){
         window.myLine = new Chart(ctx, config);
       }else if(item.name == 'Wifi Scan'){
         window.myLine = new Chart(ctx, barConfig);
+      }
+      else if(item.name == 'Traffic'){
+        window.myLine = new Chart(ctx, trafficConfig);
       }
       document.getElementById('myChart').style.height = '500px';
     }

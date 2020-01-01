@@ -1,7 +1,2 @@
-from scapy.all import *
-import time
-
-while True:
-    pkts = sniff(count=1,filter="tcp host 192.168.1.1")
-    print(len(pkts))
-    time.sleep(1)
+import subprocess
+subprocess.call(['runas', '/user:Administrator','netsh interface ipv4 set address name="Ethernet 2" static 192.168.36.12 255.255.255.0 192.168.36.1'])
