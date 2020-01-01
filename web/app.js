@@ -67,6 +67,7 @@ let signals = []
 let ssids = []
 async function startScan(){
   let data = await eel.wifi_scan()();
+  const ssidInput = document.getElementById('ssid-input').value
   for (var i = 0; i < data.length; i++) {
     signals.push(data[i].signal)
   }
