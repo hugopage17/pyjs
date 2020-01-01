@@ -5,6 +5,7 @@ import subprocess
 from scapy.all import *
 import time
 from getmac import get_mac_address
+from mac_vendor_lookup import MacLookup
 
 eel.init('web')
 
@@ -104,6 +105,7 @@ def capture_traffic(ip):
 
 @eel.expose
 def ip_scan(range):
+    mac = MacLookup()
     range = range.split('-')
     last_oct = range[1]
     first_oct = str(range[0]).split('.')[3]
@@ -122,9 +124,11 @@ def ip_scan(range):
         res = str(response._responses[0])
         if res != 'Request timed out':
             ip_mac = get_mac_address(ip=i)
+            vendor = mac.lookup(ip_mac)
             obj = {
                 'ip':i,
-                'mac':ip_mac
+                'mac':ip_mac,
+                'vendor':vendor
             }
             array_to_return.append(obj)
     return array_to_return
