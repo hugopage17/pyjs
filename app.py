@@ -6,6 +6,9 @@ from scapy.all import *
 import time
 from getmac import get_mac_address
 from mac_vendor_lookup import MacLookup
+import requests
+import webbrowser
+import os
 
 eel.init('web')
 
@@ -89,7 +92,7 @@ def export():
 @eel.expose
 def capture_traffic(ip):
     tx_rate = 0
-    pkt = sniff(count=100,filter="tcp host "+ip)
+    pkt = sniff(count=100,filter="tcp host "+ip, timeout=3)
     for p in range(len(pkt)):
         new_p = raw(pkt[p])
         tx_rate += len(new_p)
@@ -125,12 +128,26 @@ def ip_scan(range):
         if res != 'Request timed out':
             ip_mac = get_mac_address(ip=i)
             vendor = mac.lookup(ip_mac)
+            res_code = ''
+            try:
+                response = requests.get(url='https://'+i, verify=False, timeout=1)
+                res_code = response.status_code
+            except:
+                res_code = 'no HTTPS'
             obj = {
                 'ip':i,
                 'mac':ip_mac,
-                'vendor':vendor
+                'vendor':vendor,
+                'https_code':res_code
             }
             array_to_return.append(obj)
     return array_to_return
+
+@eel.expose
+def connect(user,host, pwrd):
+    cmd = '{}@{}'.format(user, host)
+    p = subprocess.Popen(['ssh', cmd],stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    pwrd = str.encode(pwrd)
+    p.stdin.write(pwrd)
 
 eel.start('main.html', size=(1240, 860))

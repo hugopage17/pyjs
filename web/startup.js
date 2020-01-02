@@ -18,6 +18,10 @@ var sidebarItems = [
   {
     name:'IP Scan',
     file:'ipScan.txt'
+  },
+  {
+    name:'Connection',
+    file:'connection.txt'
   }
 ]
 

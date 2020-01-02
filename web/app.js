@@ -113,7 +113,7 @@ function stopCP(){
   clearInterval(runCT)
 }
 
-async function startScan(){
+async function startIPScan(){
   range = document.getElementById('ip-range').value
   document.getElementById('spinner').hidden = false
   let results = await eel.ip_scan(range)()
@@ -121,22 +121,71 @@ async function startScan(){
   var displayer = document.getElementById('ip-discovered')
   displayer.hidden = false
   var table = document.getElementById('ip-table')
+  var vendorList = []
+  var vendorMenu = document.getElementById('vendor-select')
   for (var i = 0; i < results.length; i++) {
+    var vendorAdded = false
     var d = document.createElement('tr')
+    d.classList.add('vendor-opt');
     d.id = 'inner-ip-scan'
     var ip = document.createElement('th')
     ip.innerText = `${results[i].ip}`
-    ip.style.marginRight = '40px'
     d.appendChild(ip)
+    if(results[i].https_code != 'no HTTPS'){
+      var ipAdd = results[i].ip
+      let launchBut = document.createElement('button')
+      launchBut.style.marginLeft = '10px'
+      launchBut.id = 'table-but'
+      launchBut.onclick = function(){
+        window.open(`https://${ipAdd}`);
+      }
+      launchBut.innerText = 'Open'
+      ip.appendChild(launchBut)
+    }
     if(results[i].mac != null){
       var mac = document.createElement('th')
       mac.innerText = `${results[i].mac}`
-      mac.style.marginRight = '40px'
       var vendor = document.createElement('th')
       vendor.innerText = `${results[i].vendor}`
+      for (var j=0; j < vendorList.length; j++) {
+        if(results[i].vendor == vendorList[j]){
+          vendorAdded = true
+        }
+      }
+      if(vendorAdded == false){
+        vendorList.push(results[i].vendor)
+        var newVen = document.createElement('option')
+        newVen.innerText = results[i].vendor
+        newVen.value = results[i].vendor
+        vendorMenu.appendChild(newVen)
+      }
       d.appendChild(mac)
       d.appendChild(vendor)
     }
     table.appendChild(d)
   }
+  vendorMenu.onchange = function(event){
+    var options = document.getElementsByClassName('vendor-opt')
+    for (var i = 0; i < options.length; i++) {
+      if(event.target.value != 'all'){
+        if(options[i].childNodes[2].innerText == event.target.value){
+          options[i].hidden = false
+        }else{
+          options[i].hidden = true
+        }
+      }
+      else{
+        options[i].hidden = false
+      }
+    }
+  }
+  document.getElementById('scan-bot-menu').hidden = false
+}
+
+async function startConnection(){
+  const user = document.getElementById('user-connection').value
+  const host = document.getElementById('connection-host').value
+  const pwrd = document.getElementById('pwrd-connection').value
+  let start = await eel.connect(user, host, pwrd)()
+  alert('Connected to '+host)
 }

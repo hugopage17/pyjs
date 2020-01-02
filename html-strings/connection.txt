@@ -1,0 +1,8 @@
+<div class='panel-wrapper' name='traffic-capture'>
+  <div>
+    <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='10.16.32.35'/>
+    <input id='user-connection' placeholder='Username' class='panel-input' value='admin'/>
+    <input id='pwrd-connection' placeholder='Password' class='panel-input' value='b8r0e2w1l1abn'/>
+    <button onclick="startConnection()" class='panel-but' style="margin-right:10px;">Start</button><br/>
+  </div>
+</div>
