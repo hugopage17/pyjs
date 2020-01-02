@@ -2,7 +2,18 @@
   <div id='opt-menu'>
     <input placeholder='Example: 192.168.0.1-100 ' class='panel-input' id='ip-range'></input>
     <button onclick="startScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
-    <div class="loader" id='spinner' hidden='true'></div>
-    <div id='ip-discovered'></div>
+    <div style='border-bottom:1px solid #009de0; margin-top:10px;margin-bottom:20px;'></div>
+    <div style='margin:auto;width:50%;' id='spinner' hidden='true'>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div id='ip-discovered' hidden='true'>
+      <table id='ip-table' style='width:100%;color:white;font-weight:100;'>
+        <tr>
+          <th>IP Address</th>
+          <th>MAC Address</th>
+          <th>Manufacturer</th>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

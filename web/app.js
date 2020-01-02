@@ -117,25 +117,26 @@ async function startScan(){
   range = document.getElementById('ip-range').value
   document.getElementById('spinner').hidden = false
   let results = await eel.ip_scan(range)()
-  console.log(results);
   document.getElementById('spinner').hidden = true
   var displayer = document.getElementById('ip-discovered')
+  displayer.hidden = false
+  var table = document.getElementById('ip-table')
   for (var i = 0; i < results.length; i++) {
-    var d = document.createElement('div')
+    var d = document.createElement('tr')
     d.id = 'inner-ip-scan'
-    var ip = document.createElement('label')
-    ip.innerText = `IP Address: ${results[i].ip}`
+    var ip = document.createElement('th')
+    ip.innerText = `${results[i].ip}`
     ip.style.marginRight = '40px'
     d.appendChild(ip)
     if(results[i].mac != null){
-      var mac = document.createElement('label')
-      mac.innerText = `MAC Address: ${results[i].mac}`
+      var mac = document.createElement('th')
+      mac.innerText = `${results[i].mac}`
       mac.style.marginRight = '40px'
-      var vendor = document.createElement('label')
-      vendor.innerText = `Manufacturer: ${results[i].vendor}`
+      var vendor = document.createElement('th')
+      vendor.innerText = `${results[i].vendor}`
       d.appendChild(mac)
       d.appendChild(vendor)
     }
-    displayer.appendChild(d)
+    table.appendChild(d)
   }
 }

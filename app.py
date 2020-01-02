@@ -120,7 +120,7 @@ def ip_scan(range):
         all_ips.append(ip)
         finder+=1
     for i in all_ips:
-        response = ping(i, size=32, timeout=3, count=1)
+        response = ping(i, size=32, timeout=1, count=1)
         res = str(response._responses[0])
         if res != 'Request timed out':
             ip_mac = get_mac_address(ip=i)
