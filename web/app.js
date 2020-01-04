@@ -89,9 +89,9 @@ async function exportFile(){
 }
 
 async function captureTraffic(){
-  count.push(c)
   const ip = document.getElementById('ip-add').value
   let traffic = await eel.capture_traffic(ip)();
+  count.push(c)
   txRate.push(traffic.rate)
   trafficConfig.data.datasets[0].data = txRate
   window.myLine.update()
@@ -188,4 +188,25 @@ async function startConnection(){
   const pwrd = document.getElementById('pwrd-connection').value
   let start = await eel.connect(user, host, pwrd)()
   alert('Connected to '+host)
+}
+
+async function floodPing(){
+  const host = document.getElementById('fp-host').value
+  const timeout = document.getElementById('fp-timeout').value
+  const packets = document.getElementById('fp-packets').value
+  const size = document.getElementById('fp-size').value
+  let rec = 0
+  let sent = 0
+  document.getElementById('fpp-rec').value = rec
+  document.getElementById('fpp-sent').value = sent
+  for (var i = 0; i < packets; i++) {
+    let ping = await eel.flood_ping(host, timeout, size)()
+    sent++
+    console.log(ping);
+    document.getElementById('fpp-sent').value = sent
+    if (ping == 'success'){
+      rec++
+      document.getElementById('fpp-rec').value = rec
+    }
+  }
 }

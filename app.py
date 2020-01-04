@@ -92,7 +92,7 @@ def export():
 @eel.expose
 def capture_traffic(ip):
     tx_rate = 0
-    pkt = sniff(count=100,filter="tcp host "+ip, timeout=3)
+    pkt = sniff(count=100,filter="tcp host "+ip)
     for p in range(len(pkt)):
         new_p = raw(pkt[p])
         tx_rate += len(new_p)
@@ -126,8 +126,12 @@ def ip_scan(range):
         response = ping(i, size=32, timeout=1, count=1)
         res = str(response._responses[0])
         if res != 'Request timed out':
-            ip_mac = get_mac_address(ip=i)
-            vendor = mac.lookup(ip_mac)
+            try:
+                ip_mac = get_mac_address(ip=i)
+                vendor = mac.lookup(ip_mac)
+            except:
+                ip_mac = None
+                vendor = None
             res_code = ''
             try:
                 response = requests.get(url='https://'+i, verify=False, timeout=1)
@@ -150,4 +154,11 @@ def connect(user,host, pwrd):
     pwrd = str.encode(pwrd)
     p.stdin.write(pwrd)
 
+@eel.expose
+def flood_ping(dst, timeout, size):
+    p = sr1(IP(dst=dst)/ICMP()/Raw(RandString(size=int(size))), timeout=int(timeout))
+    if p == None:
+        return 'no packets received'
+    else:
+        return 'success'
 eel.start('main.html', size=(1240, 860))

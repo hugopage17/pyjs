@@ -1,11 +1,13 @@
 var sidebarItems = [
   {
     name:'Ping',
-    file:'ping.txt'
+    file:'ping.txt',
+    img:'images/ping.png'
   },
   {
     name: 'Wifi Scan',
-    file:'wifi.txt'
+    file:'wifi.txt',
+    img:'images/wifi.png'
   },
   {
     name:'Local Server',
@@ -17,11 +19,16 @@ var sidebarItems = [
   },
   {
     name:'IP Scan',
-    file:'ipScan.txt'
+    file:'ipScan.txt',
+    img:'images/ip-scan.png'
   },
   {
     name:'Connection',
     file:'connection.txt'
+  },
+  {
+    name:'Flood Ping',
+    file:'flood-ping.txt'
   }
 ]
 
@@ -39,10 +46,14 @@ window.onload = async function(){
   document.getElementById('user').innerText = `Welcome ${user}`
   sidebarItems.map((item)=>{
     var i = document.createElement('p')
+    var img = document.createElement('img')
+    img.src = item.img
+    img.id = 'side-img'
     i.innerText = item.name
+    document.getElementById('sidebar').appendChild(img)
     document.getElementById('sidebar').appendChild(i)
     const file = item.file
-    i.onclick = async function(){
+    img.onclick = async function(){
       let value = await eel.get_html(file)();
       var doc = new DOMParser().parseFromString(value, "text/html");
       html = doc.documentElement

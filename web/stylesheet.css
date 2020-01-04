@@ -65,6 +65,7 @@ code {
   border-right: 1px solid rgba(0,157,224,1);
   position: fixed;
   margin-top: 40px;
+  text-align: center;
 }
 
 #main-panel{
@@ -186,4 +187,32 @@ code {
 
 #table-but:hover{
   background-color: rgba(54, 162, 235, 0.2);
+}
+
+#side-img{
+  width:65%;
+  margin:auto;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#flood-ping-wrapper{
+  border:1px solid #009de0;
+  padding:10px;
+  color:white;
+  margin:auto;
+}
+
+.flood-opt{
+  margin-bottom: 40px;
+}
+
+.table-panel-input{
+  margin:auto;
+  outline:none;
+  border:none;
+  border-bottom: 1px solid #009de0;
+  background:none;
+  color:white;
+  margin-right: 40px;
 }
