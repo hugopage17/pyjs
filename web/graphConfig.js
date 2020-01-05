@@ -72,3 +72,28 @@ var trafficConfig = {
         maintainAspectRatio: false
     }
 }
+
+var floodGraph = {
+  type: 'bar',
+  data: {
+      labels: ['Packets Sent', 'Packets Received', 'Packets Lost'],
+      datasets: [{
+          label: 'Results',
+          data: prs,
+          fill: false,
+          backgroundColor: ['rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)','rgba(196, 0, 46, 0.2)'],
+          borderColor: ['rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)','rgba(196, 0, 46, 1)'],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      },
+      maintainAspectRatio: false
+  }
+}

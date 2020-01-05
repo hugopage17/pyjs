@@ -190,6 +190,8 @@ async function startConnection(){
   alert('Connected to '+host)
 }
 
+
+let prs = []
 async function floodPing(){
   const host = document.getElementById('fp-host').value
   const timeout = document.getElementById('fp-timeout').value
@@ -202,11 +204,15 @@ async function floodPing(){
   for (var i = 0; i < packets; i++) {
     let ping = await eel.flood_ping(host, timeout, size)()
     sent++
-    console.log(ping);
     document.getElementById('fpp-sent').value = sent
     if (ping == 'success'){
       rec++
       document.getElementById('fpp-rec').value = rec
     }
   }
+  let loss = sent-rec
+  prs.push(sent, rec, loss)
+  var ctx = document.getElementById('myChart').getContext('2d');
+  window.myLine = new Chart(ctx, floodGraph);
+  document.getElementById('myChart').style.height = '500px';
 }

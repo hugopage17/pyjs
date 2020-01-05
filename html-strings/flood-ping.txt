@@ -16,4 +16,7 @@
         <button onclick="floodPing()" class='panel-but' style='width:100%;'>Start</button>
       </div>
   </div>
+  <div class='graph-wrapper'>
+    <canvas id="myChart" width="120" height="60"></canvas><br/>
+  </div>
 </div>
