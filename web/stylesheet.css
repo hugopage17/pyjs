@@ -60,12 +60,12 @@ code {
 #sidebar{
   height: 100vh;
   background-color: #303030;
-  width:5%;
+  width:8%;
   float: left;
   border-right: 1px solid rgba(0,157,224,1);
   position: fixed;
   margin-top: 40px;
-  text-align: center;
+  text-align: left;
   color:white;
 }
 
@@ -186,15 +186,31 @@ code {
   outline:none;
 }
 
+#each-icon{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid rgba(54, 162, 235, 0.2);
+  cursor: pointer;
+}
+
+#each-icon:hover{
+  background-color: rgba(54, 162, 235, 0.2);
+}
+
 #table-but:hover{
   background-color: rgba(54, 162, 235, 0.2);
 }
 
 #side-img{
-  width:65%;
-  margin:auto;
+  width:25%;
   margin-top: 20px;
   cursor: pointer;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#side-label{
+  margin-left: 20px;
 }
 
 #flood-ping-wrapper{

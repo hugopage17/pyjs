@@ -45,15 +45,19 @@ window.onload = async function(){
   let user = await eel.get_user()();
   document.getElementById('user').innerText = `Welcome ${user}`
   sidebarItems.map((item)=>{
-    var i = document.createElement('p')
+    var i = document.createElement('label')
     var img = document.createElement('img')
+    var eachIcon = document.createElement('div')
+    eachIcon.id = 'each-icon'
     img.src = item.img
-    img.id = 'side-img'
+    img.id = 'side-icon'
+    i.id = 'side-label'
     i.innerText = item.name
-    document.getElementById('sidebar').appendChild(img)
-    document.getElementById('sidebar').appendChild(i)
+    eachIcon.appendChild(img)
+    eachIcon.appendChild(i)
+    document.getElementById('sidebar').appendChild(eachIcon)
     const file = item.file
-    img.onclick = async function(){
+    eachIcon.onclick = async function(){
       let value = await eel.get_html(file)();
       var doc = new DOMParser().parseFromString(value, "text/html");
       html = doc.documentElement
