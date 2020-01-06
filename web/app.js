@@ -25,7 +25,13 @@ async function pingFunc(){
   window.myLine.update()
   let avg = latency.reduce((a, b) => a + b, 0)/latency.length
   avg = avg.toFixed(2)
-  let time = value.toFixed(2)
+  let time
+  try{
+    time = `${value.toFixed(2)}ms`
+  }
+  catch{
+    time = value
+  }
   var p = document.createElement('DIV')
   p.id = 'ping-count-single'
   var p1 = document.createElement('label')
@@ -38,7 +44,7 @@ async function pingFunc(){
   p3.innerText = `Timeout: ${timeout}`
   p3.id = 'inner-ping-count'
   p4 = document.createElement('label')
-  p4.innerText = `Response: ${value}ms`
+  p4.innerText = `Response: ${time}`
   p4.id = 'inner-ping-count'
   p.appendChild(p1)
   p.appendChild(p2)

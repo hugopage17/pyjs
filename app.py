@@ -19,9 +19,13 @@ def get_user():
 
 @eel.expose
 def ping_ip(ip, bytes, timeout):
+    timeout = int(timeout)
     try:
-        response_list = ping(ip, size=int(bytes), timeout=int(timeout), count=1)
-        return response_list.rtt_avg_ms
+        response_list = ping(ip, size=int(bytes), timeout=timeout, count=1)
+        if response_list.rtt_avg_ms == timeout*1000:
+            return "Host unreachable"
+        else:
+            return response_list.rtt_avg_ms
     except:
         return "Host unreachable"
 
