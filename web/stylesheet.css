@@ -145,7 +145,8 @@ code {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #009de0;
+  background: rgba(54, 162, 235, 0.25);
+  border:1px solid #009de0;
   border-radius: 10px;
 }
 
@@ -206,16 +207,14 @@ code {
   margin-top: 20px;
   cursor: pointer;
   vertical-align: middle;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #side-label{
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 #flood-ping-wrapper{
-  border:1px solid #009de0;
-  padding:10px;
   color:white;
   margin:auto;
 }

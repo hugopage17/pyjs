@@ -9,6 +9,9 @@ from mac_vendor_lookup import MacLookup
 import requests
 import webbrowser
 import os
+from tabulate import tabulate
+from tkinter import filedialog
+from tkinter import *
 
 eel.init('web')
 
@@ -19,7 +22,7 @@ def get_user():
 
 @eel.expose
 def ping_ip(ip, bytes, timeout):
-    timeout = int(timeout)
+    timeout = int(timeout)/1000
     try:
         response_list = ping(ip, size=int(bytes), timeout=timeout, count=1)
         if response_list.rtt_avg_ms == timeout*1000:
@@ -28,6 +31,14 @@ def ping_ip(ip, bytes, timeout):
             return response_list.rtt_avg_ms
     except:
         return "Host unreachable"
+
+@eel.expose
+def export_ping(data):
+    Tk().withdraw()
+    f = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
+    file_data = tabulate(data, headers=["Bytes","Host", "Response Time", "Timeout"])
+    f.write(file_data)
+    f.close()
 
 @eel.expose
 def get_html(file):
@@ -152,15 +163,13 @@ def ip_scan(range):
     return array_to_return
 
 @eel.expose
-def connect(user,host, pwrd):
-    cmd = '{}@{}'.format(user, host)
-    p = subprocess.Popen(['ssh', cmd],stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    pwrd = str.encode(pwrd)
-    p.stdin.write(pwrd)
+def connect(user,host):
+    subprocess.call('start /wait python connect.py {}@{}'.format(user,host), shell=True)
 
 @eel.expose
 def flood_ping(dst, timeout, size):
-    p = sr1(IP(dst=dst)/ICMP()/Raw(RandString(size=int(size))), timeout=int(timeout))
+    timeout = int(timeout)/1000
+    p = sr1(IP(dst=dst)/ICMP()/Raw(RandString(size=int(size))), timeout=timeout)
     if p == None:
         return 'no packets received'
     else:

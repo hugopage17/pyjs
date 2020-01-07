@@ -17,7 +17,9 @@
       <option value="100">
       <option value="1000">
     </datalist>
-    <button onclick="startPing()" class='panel-but' style="margin-right:20px;">Start</button><button onclick="stopPing()" class='panel-but'>Stop</button><br/>
+    <button onclick="startPing()" class='panel-but' style="margin-right:20px;">Start</button>
+    <button onclick="stopPing()" class='panel-but'>Stop</button>
+    <button onclick="exportPing()" class='panel-but'>Export</button><br/>
   </div>
   <div id='ping-counts'></div>
   <div class='graph-wrapper'>

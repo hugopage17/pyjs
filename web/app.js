@@ -11,41 +11,48 @@ async function pingFunc(){
   let size = document.getElementById('size').value
   let timeout = document.getElementById('timeout').value
   let value = await eel.ping_ip(ip, size, timeout)();
-  if(value >= max){
-    max = value
-  }
-  if(min != 0 && min >= value){
-    min = value
-  }
-  else if(min == 0){
-    min = value
-  }
   latency.push(value)
   config.data.datasets[0].data = latency
   window.myLine.update()
-  let avg = latency.reduce((a, b) => a + b, 0)/latency.length
-  avg = avg.toFixed(2)
   let time
+  let avg = 0
   try{
     time = `${value.toFixed(2)}ms`
+    avg = latency.reduce((a, b) => a + b, 0)/latency.length
+    avg = avg.toFixed(2)
+    if(value >= max){
+      max = value
+    }
+    if(min != 0 && min >= value){
+      min = value
+    }
+    else if(min == 0){
+      min = value
+    }
   }
   catch{
     time = value
+    min = min
+    max = max
   }
   var p = document.createElement('DIV')
   p.id = 'ping-count-single'
   var p1 = document.createElement('label')
   p1.innerText = `Bytes: ${size}`
   p1.id = 'inner-ping-count'
+  p1.classList.add('ping-size-class');
   var p2 = document.createElement('label')
   p2.innerText = `Host: ${ip}`
   p2.id = 'inner-ping-count'
+  p2.classList.add('ping-ip-class');
   p3 = document.createElement('label')
-  p3.innerText = `Timeout: ${timeout}`
+  p3.innerText = `Timeout: ${timeout}ms`
   p3.id = 'inner-ping-count'
+  p3.classList.add('ping-timeout-class');
   p4 = document.createElement('label')
   p4.innerText = `Response: ${time}`
   p4.id = 'inner-ping-count'
+  p4.classList.add('ping-res-class');
   p.appendChild(p1)
   p.appendChild(p2)
   p.appendChild(p4)
@@ -63,11 +70,25 @@ async function pingFunc(){
 let runPing
 
 function startPing() {
-  runPing = setInterval(pingFunc,1000)
+  runPing = setInterval(pingFunc,document.getElementById('timeout').value)
 }
 
 function stopPing(){
   clearInterval(runPing)
+}
+
+async function exportPing(){
+  const size = document.getElementsByClassName('ping-size-class')
+  const hosts = document.getElementsByClassName('ping-ip-class')
+  const res = document.getElementsByClassName('ping-res-class')
+  const timeout = document.getElementsByClassName('ping-timeout-class')
+  let dataArr = []
+  for (var i = 0; i < size.length; i++) {
+    let newArr = []
+    newArr.push(size[i].innerText.split(':')[1], hosts[i].innerText.split(':')[1], res[i].innerText.split(':')[1], timeout[i].innerText.split(':')[1])
+    dataArr.push(newArr)
+  }
+  let data = await eel.export_ping(dataArr)();
 }
 
 let signals = []
@@ -191,8 +212,7 @@ async function startIPScan(){
 async function startConnection(){
   const user = document.getElementById('user-connection').value
   const host = document.getElementById('connection-host').value
-  const pwrd = document.getElementById('pwrd-connection').value
-  let start = await eel.connect(user, host, pwrd)()
+  let start = await eel.connect(user, host)()
   alert('Connected to '+host)
 }
 
@@ -218,6 +238,7 @@ async function floodPing(){
   }
   let loss = sent-rec
   prs.push(sent, rec, loss)
+  document.getElementById('packet-loss-flood').innerText = `Packet Loss: ${(loss/sent)*100}%`
   var ctx = document.getElementById('myChart').getContext('2d');
   window.myLine = new Chart(ctx, floodGraph);
   document.getElementById('myChart').style.height = '500px';

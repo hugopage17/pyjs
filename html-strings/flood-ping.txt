@@ -1,19 +1,24 @@
 <div class='panel-wrapper' name='flood-ping'>
   <div id='flood-ping-wrapper'>
-      <div class='flood-opt'>
-        <label>Address <input class='table-panel-input' id='fp-host' style='width:90%;'></input></label>
+      <div style='float:left;border:1px solid #009de0;padding:10px;'>
+        <div class='flood-opt'>
+          <label>Address <input class='table-panel-input' id='fp-host' style='width:40%;'></input></label>
+          <label>Size <input class='table-panel-input' id='fp-size' style='width:25%;'></input></label>
+        </div>
+        <div class='flood-opt'>
+          <label>Timeout <input class='table-panel-input' id='fp-timeout' style='width:25%;'></input></label>
+          <label>Packets <input class='table-panel-input' id='fp-packets' value='100' style='width:25%;'></input></label>
+        </div>
+        <div class='flood-opt'>
+          <button onclick="floodPing()" class='panel-but' style='width:100%;'>Start</button>
+        </div>
       </div>
-      <div class='flood-opt'>
-        <label>Size <input class='table-panel-input' id='fp-size' style='width:25%;'></input></label>
-        <label>Timeout <input class='table-panel-input' id='fp-timeout' style='width:25%;'></input></label>
-        <label>Packets <input class='table-panel-input' id='fp-packets' value='100' style='width:25%;'></input></label>
-      </div>
-      <div class='flood-opt'>
-        <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:35%;'></input></label>
-        <label>Packets Received <input class='table-panel-input' id='fpp-rec' style='width:35%;'></input></label>
-      </div>
-      <div class='flood-opt'>
-        <button onclick="floodPing()" class='panel-but' style='width:100%;'>Start</button>
+      <div style='float:right;border:1px solid #009de0;'>
+        <div class='flood-opt'>
+          <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:25%;'></input></label>
+          <label>Packets Received <input class='table-panel-input' id='fpp-rec' style='width:25%;'></input></label><br/>
+          <label id='packet-loss-flood'></label>
+        </div>
       </div>
   </div>
   <div class='graph-wrapper'>
