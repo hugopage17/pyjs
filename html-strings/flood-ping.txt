@@ -15,7 +15,7 @@
       </div>
       <div style='float:right;border:1px solid #009de0;'>
         <div class='flood-opt'>
-          <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:25%;'></input></label>
+          <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:25%;'></input></label><br/>
           <label>Packets Received <input class='table-panel-input' id='fpp-rec' style='width:25%;'></input></label><br/>
           <label id='packet-loss-flood'></label>
         </div>
