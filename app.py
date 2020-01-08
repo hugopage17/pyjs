@@ -33,9 +33,10 @@ def ping_ip(ip, bytes, timeout):
         return "Host unreachable"
 
 @eel.expose
-def export_ping(data):
+def export_ping(data, host):
     Tk().withdraw()
-    f = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
+    title = host+'-ping'
+    f = filedialog.asksaveasfile(mode='w', defaultextension=".txt", initialfile=title)
     file_data = tabulate(data, headers=["Bytes","Host", "Response Time", "Timeout"])
     f.write(file_data)
     f.close()

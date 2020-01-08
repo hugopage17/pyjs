@@ -4,7 +4,7 @@
     <button onclick="startCP()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopCP()" class='panel-but'>Stop</button><br/>
   </div>
   <div class='graph-wrapper' >
-    <canvas id="myChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
+    <canvas id="myTrafficChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
     <label class='labels' id='traffic-txt' style="margin-right:40px;"></label>
     <label class='labels' id='tcp' style="margin-right:20px;"></label>
     <label class='labels' id='udp' style="margin-right:20px;"></label>

@@ -1,6 +1,6 @@
 <div class='panel-wrapper' name='flood-ping'>
   <div id='flood-ping-wrapper'>
-      <div style='float:left;border:1px solid #009de0;padding:10px;'>
+      <div style='float:left;border:1px solid #009de0;padding:10px;background-color:#4d4d4d;'>
         <div class='flood-opt'>
           <label>Address <input class='table-panel-input' id='fp-host' style='width:40%;'></input></label>
           <label>Size <input class='table-panel-input' id='fp-size' style='width:25%;'></input></label>
@@ -13,10 +13,10 @@
           <button onclick="floodPing()" class='panel-but' style='width:100%;'>Start</button>
         </div>
       </div>
-      <div style='float:right;border:1px solid #009de0;'>
+      <div style='float:right;border:1px solid #009de0;padding:10px;background-color:#4d4d4d;'>
         <div class='flood-opt'>
-          <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:25%;'></input></label><br/>
-          <label>Packets Received <input class='table-panel-input' id='fpp-rec' style='width:25%;'></input></label><br/>
+          <label>Packets Sent <input class='table-panel-input' id='fpp-sent' style='width:30%;'></input></label><br/><br/>
+          <label>Packets Received <input class='table-panel-input' id='fpp-rec' style='width:30%;'></input></label><br/><br/>
           <label id='packet-loss-flood'></label>
         </div>
       </div>

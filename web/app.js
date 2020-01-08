@@ -88,7 +88,23 @@ async function exportPing(){
     newArr.push(size[i].innerText.split(':')[1], hosts[i].innerText.split(':')[1], res[i].innerText.split(':')[1], timeout[i].innerText.split(':')[1])
     dataArr.push(newArr)
   }
-  let data = await eel.export_ping(dataArr)();
+  let data = await eel.export_ping(dataArr, hosts[0].innerText.split(':')[1])();
+}
+
+function clearPing(){
+  const parent = document.getElementById('ping-counts');
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild)
+  }
+  config.data.datasets[0].data = []
+  window.myLine.update()
+  document.getElementById('latency-avg').innerText = ``
+  document.getElementById('min').innerText = ``
+  document.getElementById('max').innerText = ``
+  document.getElementById('packets-sent').innerText = ``
+  latency = []
+  count = []
+  c = 1
 }
 
 let signals = []

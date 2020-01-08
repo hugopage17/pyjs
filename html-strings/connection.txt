@@ -1,4 +1,4 @@
-<div class='panel-wrapper' name='traffic-capture'>
+<div class='panel-wrapper' name='connection'>
   <div>
     <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='10.16.32.35'/>
     <input id='user-connection' placeholder='Username' class='panel-input' value='admin'/>

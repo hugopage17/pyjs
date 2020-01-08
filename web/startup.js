@@ -34,6 +34,7 @@ var sidebarItems = [
   {
     name:'Connection',
     file:'connection.txt',
+    domName:'connection',
     opened:false
   },
   {
@@ -80,7 +81,7 @@ window.onload = async function(){
         item.opened = true
         windows_opened++
       }
-      let ctx = document.getElementById('myChart').getContext('2d');
+      let ctx
       if(item.name == 'Ping'){
         ctx = document.getElementById('myChart').getContext('2d');
         window.myLine = new Chart(ctx, config);
@@ -89,6 +90,7 @@ window.onload = async function(){
         window.myLine = new Chart(ctx, barConfig);
       }
       else if(item.name == 'Traffic'){
+        ctx = document.getElementById('myTrafficChart').getContext('2d');  
         window.myLine = new Chart(ctx, trafficConfig);
       }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++) {
