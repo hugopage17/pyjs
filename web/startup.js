@@ -19,9 +19,10 @@ var sidebarItems = [
     opened:false
   },
   {
-    name:'Traffic',
+    name:'Bandwidth',
     file:'traffic.txt',
     domName:'traffic-capture',
+    img:'images/bandwidth.png',
     opened:false
   },
   {
@@ -35,6 +36,7 @@ var sidebarItems = [
     name:'Connection',
     file:'connection.txt',
     domName:'connection',
+    img:'images/connection.png',
     opened:false
   },
   {
@@ -90,7 +92,7 @@ window.onload = async function(){
         window.myLine = new Chart(ctx, barConfig);
       }
       else if(item.name == 'Traffic'){
-        ctx = document.getElementById('myTrafficChart').getContext('2d');  
+        ctx = document.getElementById('myTrafficChart').getContext('2d');
         window.myLine = new Chart(ctx, trafficConfig);
       }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++) {
