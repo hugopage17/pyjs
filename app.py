@@ -165,7 +165,8 @@ def ip_scan(range):
 
 @eel.expose
 def connect(user,host):
-    subprocess.call('start /wait python connect.py {}@{}'.format(user,host), shell=True)
+    cmd = '{}@{}'.format(user, host)
+    subprocess.Popen(['ssh', cmd])
 
 @eel.expose
 def flood_ping(dst, timeout, size):
@@ -175,4 +176,5 @@ def flood_ping(dst, timeout, size):
         return 'no packets received'
     else:
         return 'success'
+
 eel.start('main.html', size=(1240, 860))

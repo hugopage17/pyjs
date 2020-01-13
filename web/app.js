@@ -4,6 +4,7 @@ let txRate = []
 var c = 1
 let max = 0
 let min = 0
+let pingpl = 0
 
 async function pingFunc(){
   count.push(c)
@@ -34,6 +35,7 @@ async function pingFunc(){
     time = value
     min = min
     max = max
+    pingpl++
   }
   var p = document.createElement('DIV')
   p.id = 'ping-count-single'
@@ -62,6 +64,7 @@ async function pingFunc(){
   document.getElementById('min').innerText = `Minimum: ${min}ms`
   document.getElementById('max').innerText = `Maximum: ${max}ms`
   document.getElementById('packets-sent').innerText = `Packets Sent: ${c}`
+  document.getElementById('packets-lost-ping').innerText = `Packets Loss: ${pingpl}`
   var element = document.getElementById("ping-counts");
   element.scrollTop = element.scrollHeight;
   c++

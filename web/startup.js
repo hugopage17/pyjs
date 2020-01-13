@@ -91,7 +91,7 @@ window.onload = async function(){
         ctx = document.getElementById('myScanChart').getContext('2d');
         window.myLine = new Chart(ctx, barConfig);
       }
-      else if(item.name == 'Traffic'){
+      else if(item.name == 'Bandwidth'){
         ctx = document.getElementById('myTrafficChart').getContext('2d');
         window.myLine = new Chart(ctx, trafficConfig);
       }

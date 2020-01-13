@@ -26,8 +26,13 @@
   <div class='graph-wrapper'>
     <canvas id="myChart" width="120" height="80"></canvas><br/>
   </div>
-  <label id='min' class='labels'></label>
-  <label id='max' class='labels'></label>
-  <label id='latency-avg' class='labels'></label>
-  <label id='packets-sent' class='labels'></label>
+  <div style='float:left;'>
+    <label id='min' class='labels'></label>
+    <label id='max' class='labels'></label>
+    <label id='latency-avg' class='labels'></label>
+  </div>
+  <div style='float:right;'>
+    <label id='packets-sent' class='labels'></label>
+    <label id='packets-lost-ping' class='labels'></label>
+  </div>
 </div>
