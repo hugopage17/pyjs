@@ -1,0 +1,4 @@
+<div class='panel-wrapper' name='nic'>
+  <div id='nic-div'>
+  </div>
+</div>

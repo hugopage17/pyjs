@@ -12,6 +12,7 @@ import os
 from tabulate import tabulate
 from tkinter import filedialog
 from tkinter import *
+import json
 
 eel.init('web')
 
@@ -176,5 +177,16 @@ def flood_ping(dst, timeout, size):
         return 'no packets received'
     else:
         return 'success'
+
+@eel.expose
+def get_nic():
+    arr = []
+    for i in get_windows_if_list():
+        obj = {
+            'name':i['name'],
+            'ip':i['ips']
+        }
+        arr.append(obj)
+    return arr
 
 eel.start('main.html', size=(1240, 860))

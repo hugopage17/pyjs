@@ -44,10 +44,17 @@ var sidebarItems = [
     file:'flood-ping.txt',
     domName:'flood-ping',
     opened:false
+  },
+  {
+    name:'NIC',
+    file:'nic.txt',
+    domName:'nic',
+    opened:false
   }
 ]
 
 let windows_opened = 0
+let nicData
 
 window.onload = async function(){
     var online = navigator.onLine;
@@ -61,6 +68,8 @@ window.onload = async function(){
     }
   let user = await eel.get_user()();
   document.getElementById('user').innerText = `Welcome ${user}`
+  let nic = await eel.get_nic()()
+  nicData = nic
   sidebarItems.map((item)=>{
     var i = document.createElement('label')
     var img = document.createElement('img')
@@ -94,6 +103,15 @@ window.onload = async function(){
       else if(item.name == 'Bandwidth'){
         ctx = document.getElementById('myTrafficChart').getContext('2d');
         window.myLine = new Chart(ctx, trafficConfig);
+      }
+      else if(item.name == 'NIC'){
+        for (var i = 0; i < nicData.length; i++) {
+          var eachDiv = document.createElement('div')
+          var name = document.createElement('h1')
+          name.innerText = nicData[i].name
+          eachDiv.appendChild(name)
+          document.getElementById('nic-div').appendChild(eachDiv)
+        }
       }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++) {
         document.getElementsByTagName("canvas")[i].style.height = '500px';
