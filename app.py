@@ -109,7 +109,7 @@ def export():
 @eel.expose
 def capture_traffic(ip):
     tx_rate = 0
-    pkt = sniff(count=100,filter="tcp host "+ip)
+    pkt = sniff(count=100,filter="host "+ip)
     for p in range(len(pkt)):
         new_p = raw(pkt[p])
         tx_rate += len(new_p)
