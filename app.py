@@ -13,6 +13,8 @@ from tabulate import tabulate
 from tkinter import filedialog
 from tkinter import *
 import json
+import http.server
+import socketserver
 
 eel.init('web')
 
@@ -191,9 +193,13 @@ def get_nic():
 
 @eel.expose
 def launch_server(port):
-    port = int(port)
     Tk().withdraw()
+    port = int(port)
     f = filedialog.askdirectory()
-    print(f)
+    os.chdir(f)
+    Handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        webbrowser.open('http://localhost:{}'.format(port))
+        httpd.serve_forever()
 
 eel.start('main.html', size=(1240, 860))

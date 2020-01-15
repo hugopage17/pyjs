@@ -101,7 +101,7 @@ code {
 }
 
 #ping-count-single:hover{
-  background-color: rgba(0,157,224,0.1); 
+  background-color: rgba(0,157,224,0.1);
 }
 
 #inner-ping-count{
@@ -235,6 +235,10 @@ code {
   background:none;
   color:white;
   margin-right: 40px;
+}
+
+#sidebar{
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 1240px){

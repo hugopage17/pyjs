@@ -265,6 +265,6 @@ async function floodPing(){
 
 async function launchServer(){
   const port = document.getElementById('server-port').value
-  let serve = await eel.launch_server()();
+  let serve = await eel.launch_server(port)();
   alert('hello')
 }
