@@ -189,4 +189,11 @@ def get_nic():
         arr.append(obj)
     return arr
 
+@eel.expose
+def launch_server(port):
+    port = int(port)
+    Tk().withdraw()
+    f = filedialog.askdirectory()
+    print(f)
+
 eel.start('main.html', size=(1240, 860))

@@ -100,6 +100,10 @@ code {
   text-align: left;
 }
 
+#ping-count-single:hover{
+  background-color: rgba(0,157,224,0.1); 
+}
+
 #inner-ping-count{
   margin-right: 60px;
 }
@@ -202,16 +206,16 @@ code {
   background-color: rgba(54, 162, 235, 0.2);
 }
 
-#side-img{
+#side-icon{
   width:25%;
-  margin-top: 20px;
   cursor: pointer;
   vertical-align: middle;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 #side-label{
-  margin-left: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 #flood-ping-wrapper{
@@ -231,4 +235,16 @@ code {
   background:none;
   color:white;
   margin-right: 40px;
+}
+
+@media only screen and (max-width: 1240px){
+  #sidebar{
+    font-size: 12px;
+  }
+  #side-icon{
+    width:20%;
+  }
+  .panel-but{
+    font-size:10px;
+  }
 }

@@ -262,3 +262,9 @@ async function floodPing(){
   window.myLine = new Chart(ctx, floodGraph);
   document.getElementById('myChart').style.height = '500px';
 }
+
+async function launchServer(){
+  const port = document.getElementById('server-port').value
+  let serve = await eel.launch_server()();
+  alert('hello')
+}

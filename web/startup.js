@@ -16,6 +16,8 @@ var sidebarItems = [
   {
     name:'Local Server',
     file:'server.txt',
+    opened:false,
+    domName:'server',
     opened:false
   },
   {

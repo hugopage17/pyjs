@@ -16,6 +16,10 @@ var config = {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
+                },
+                scaleLabel:{
+                  display:true,
+                  labelString:'response time (ms)'
                 }
             }]
         },
@@ -41,6 +45,10 @@ var barConfig = {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
+                },
+                scaleLabel:{
+                  display:true,
+                  labelString:'signal strength (%)'
                 }
             }]
         },
@@ -66,6 +74,10 @@ var trafficConfig = {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
+                },
+                scaleLabel:{
+                  display:true,
+                  labelString:'throughput (kbs)'
                 }
             }]
         },
