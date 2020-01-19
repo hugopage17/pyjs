@@ -105,9 +105,11 @@ function clearPing(){
   document.getElementById('min').innerText = ``
   document.getElementById('max').innerText = ``
   document.getElementById('packets-sent').innerText = ``
+  document.getElementById('packets-lost-ping').innerText = ``
   latency = []
   count = []
   c = 1
+  pingpl = 0
 }
 
 let signals = []
@@ -134,14 +136,16 @@ async function exportFile(){
   console.log(fileselector.value);
 }
 
+let tcount = []
+let tc = 1
 async function captureTraffic(){
   const ip = document.getElementById('ip-add').value
   let traffic = await eel.capture_traffic(ip)();
-  count.push(c)
+  tcount.push(tc)
   txRate.push(traffic.rate)
   trafficConfig.data.datasets[0].data = txRate
   window.myLine.update()
-  c++
+  tc++
   document.getElementById('traffic-txt').innerText = `TX Rate: ${traffic.rate}kb`
   document.getElementById('tcp').innerText = `Packet:     ${traffic.types[0]}`
   document.getElementById('udp').innerText = traffic.types[1]
@@ -176,6 +180,7 @@ async function startIPScan(){
     d.id = 'inner-ip-scan'
     var ip = document.createElement('th')
     ip.innerText = `${results[i].ip}`
+    ip.classList.add('scan-table-ip');
     d.appendChild(ip)
     if(results[i].https_code != 'no HTTPS'){
       var ipAdd = results[i].ip
@@ -191,8 +196,10 @@ async function startIPScan(){
     if(results[i].mac != null){
       var mac = document.createElement('th')
       mac.innerText = `${results[i].mac}`
+      mac.classList.add('scan-table-mac');
       var vendor = document.createElement('th')
       vendor.innerText = `${results[i].vendor}`
+      vendor.classList.add('scan-table-vendor');
       for (var j=0; j < vendorList.length; j++) {
         if(results[i].vendor == vendorList[j]){
           vendorAdded = true
@@ -226,6 +233,25 @@ async function startIPScan(){
     }
   }
   document.getElementById('scan-bot-menu').hidden = false
+}
+
+async function exportIpScan(){
+  const ip = document.getElementsByClassName('scan-table-ip')
+  const mac = document.getElementsByClassName('scan-table-mac')
+  const vendor = document.getElementsByClassName('scan-table-vendor')
+  let dataArr = []
+  for (var i = 0; i < ip.length; i++) {
+    let newArr = []
+    newArr.push(ip[i].innerText)
+    try{
+      newArr.push(mac[i].innerText, vendor[i].innerText)
+    }
+    catch{
+      newArr.push('','')
+    }
+    dataArr.push(newArr)
+  }
+  let data = await eel.export_ip_scan(dataArr)();
 }
 
 async function startConnection(){

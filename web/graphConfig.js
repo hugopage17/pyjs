@@ -59,7 +59,7 @@ var barConfig = {
 var trafficConfig = {
     type: 'line',
     data: {
-        labels: count,
+        labels: tcount,
         datasets: [{
             label: 'TX Rate (kbs)',
             data: txRate,

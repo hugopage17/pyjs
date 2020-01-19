@@ -19,6 +19,7 @@
       <select id='vendor-select'>
         <option value='all'>All Manufacturers</option>
       </select>
+      <button class='panel-but' onclick="exportIpScan()" style="margin-left:10px;">Export</button>
     </div>
   </div>
 </div>

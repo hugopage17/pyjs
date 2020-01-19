@@ -241,6 +241,12 @@ code {
   font-size: 14px;
 }
 
+h1{
+  font-weight: 100;
+  font-size: 22px;
+  color:#dedede;
+}
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;

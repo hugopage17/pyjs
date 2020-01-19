@@ -111,7 +111,7 @@ def export():
 @eel.expose
 def capture_traffic(ip):
     tx_rate = 0
-    pkt = sniff(count=100,filter="host "+ip)
+    pkt = sniff(count=100,filter="host "+ip, timeout=10)
     for p in range(len(pkt)):
         new_p = raw(pkt[p])
         tx_rate += len(new_p)
@@ -167,6 +167,14 @@ def ip_scan(range):
     return array_to_return
 
 @eel.expose
+def export_ip_scan(data):
+    Tk().withdraw()
+    f = filedialog.asksaveasfile(mode='w', defaultextension=".txt", initialfile='ip-scan')
+    file_data = tabulate(data, headers=["Host", "MAC Address", "Vendor"])
+    f.write(file_data)
+    f.close()
+
+@eel.expose
 def connect(user,host):
     cmd = '{}@{}'.format(user, host)
     subprocess.Popen(['ssh', cmd])
@@ -178,6 +186,7 @@ def flood_ping(dst, timeout, size):
     if p == None:
         return 'no packets received'
     else:
+        print(p[0].summary())
         return 'success'
 
 @eel.expose

@@ -115,7 +115,7 @@ window.onload = async function(){
           document.getElementById('nic-div').appendChild(eachDiv)
         }
       }
-      for (var i = 0; i < document.getElementsByTagName("canvas").length; i++) {
+      for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){
         document.getElementsByTagName("canvas")[i].style.height = '500px';
       }
       if(windows_opened != 0){
