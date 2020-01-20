@@ -184,10 +184,17 @@ def flood_ping(dst, timeout, size):
     timeout = int(timeout)/1000
     p = sr1(IP(dst=dst)/ICMP()/Raw(RandString(size=int(size))), timeout=timeout)
     if p == None:
-        return 'no packets received'
+        obj = {
+            'res':'no packets received',
+            'sum':'no packets received'
+        }
+        return obj
     else:
-        print(p[0].summary())
-        return 'success'
+        obj = {
+            'res':'success',
+            'sum':p[0].summary()
+        }
+        return obj
 
 @eel.expose
 def get_nic():

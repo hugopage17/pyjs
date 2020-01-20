@@ -1,10 +1,5 @@
-from scapy.all import *
-
-arr = []
-for i in get_windows_if_list():
-    obj = {
-        'name':i['name'],
-        'ip':i['ips']
-    }
-    arr.append(obj)
-return arr
+import pyspeedtest
+st = pyspeedtest.SpeedTest()
+st.ping()
+st.download()
+st.upload()

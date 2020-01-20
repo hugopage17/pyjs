@@ -247,6 +247,21 @@ h1{
   color:#dedede;
 }
 
+#flood-logs{
+  overflow: auto;
+  border: 1px solid #009de0;
+  color:#dedede;
+  height:30vh;
+  width: 90%;
+  margin:auto;
+  margin-top:40px;
+}
+
+#each-flood-log{
+  padding:10px;
+  border-bottom: 1px solid rgba(54, 162, 235, 0.5);
+}
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;

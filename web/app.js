@@ -276,10 +276,14 @@ async function floodPing(){
     let ping = await eel.flood_ping(host, timeout, size)()
     sent++
     document.getElementById('fpp-sent').value = sent
-    if (ping == 'success'){
+    if (ping.res != 'no packets received'){
       rec++
       document.getElementById('fpp-rec').value = rec
     }
+    var log = document.createElement('p')
+    log.innerText = ping.sum
+    log.id = 'each-flood-log'
+    document.getElementById('flood-logs').appendChild(log)
   }
   let loss = sent-rec
   prs.push(sent, rec, loss)
@@ -287,6 +291,11 @@ async function floodPing(){
   var ctx = document.getElementById('myChart').getContext('2d');
   window.myLine = new Chart(ctx, floodGraph);
   document.getElementById('myChart').style.height = '500px';
+}
+
+function showLogs(){
+  document.getElementById('flood-graph').hidden = true
+  document.getElementById('flood-logs').hidden = false
 }
 
 async function launchServer(){

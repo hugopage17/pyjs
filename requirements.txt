@@ -3,3 +3,4 @@ pythonping==1.0.8
 getmac==0.8.2
 mac-vendor-lookup==0.1.9
 paramiko==2.7.1
+pyspeedtest==1.2.7

@@ -21,7 +21,12 @@
         </div>
       </div>
   </div>
-  <div class='graph-wrapper'>
+  <div class='graph-wrapper' id='flood-graph'>
     <canvas id="myChart" width="120" height="60"></canvas><br/>
+  </div>
+  <div id='flood-logs' hidden='true'></div>
+  <br/>
+  <div id='flood-bot-menu'>
+    <button class='panel-but' onclick='showLogs()'>Logs</button>
   </div>
 </div>

@@ -21,7 +21,7 @@ var sidebarItems = [
     opened:false
   },
   {
-    name:'Bandwidth',
+    name:'Throughput',
     file:'traffic.txt',
     domName:'traffic-capture',
     img:'images/bandwidth.png',
