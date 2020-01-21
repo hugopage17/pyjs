@@ -24,9 +24,11 @@
   <div class='graph-wrapper' id='flood-graph'>
     <canvas id="myChart" width="120" height="60"></canvas><br/>
   </div>
-  <div id='flood-logs' hidden='true'></div>
-  <br/>
-  <div id='flood-bot-menu'>
-    <button class='panel-but' onclick='showLogs()'>Logs</button>
+  <div id='flood-logs' hidden='true' style='background-color:#4d4d4d;'></div>
+  <div id='flood-bot-menu' style='position:fixed;bottom:20;'>
+    <label class="switch" id='switch-name'>
+      <input type="checkbox" id='log-check' onchange='showLogs()'/>
+      <span class="slider round"></span>
+    </label>
   </div>
 </div>

@@ -294,8 +294,15 @@ async function floodPing(){
 }
 
 function showLogs(){
-  document.getElementById('flood-graph').hidden = true
-  document.getElementById('flood-logs').hidden = false
+  var checked = document.getElementById('log-check').checked
+  if(checked == true){
+    document.getElementById('flood-graph').hidden = true
+    document.getElementById('flood-logs').hidden = false
+  }else if(checked == false){
+    document.getElementById('flood-graph').hidden = false
+    document.getElementById('flood-logs').hidden = true
+  }
+
 }
 
 async function launchServer(){
