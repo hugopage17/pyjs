@@ -1,15 +1,18 @@
-import socket
+from scapy.all import *
 
-TCP_IP = '172.0.0.1'
-TCP_PORT = 5005
-BUFFER_SIZE = 1024
-MESSAGE = "Hello, World!"
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((TCP_IP, TCP_PORT))
-s.listen(1)
-conn, addr = s.accept()
-while 1:
-    data = conn.recv(BUFFER_SIZE)
-    if not data: break
-    conn.send(data)  # echo
-conn.close()
+hostname = "google.com"
+
+for i in range(1, 28):
+    pkt = IP(dst=hostname, ttl=i) / ICMP()
+    # Send the packet and get a reply
+    reply = sr1(pkt, verbose=0)
+    if reply is None:
+        # No reply =(
+        break
+    elif reply.type == 3:
+        # We've reached our destination
+        print ("Done!", reply.src)
+        break
+    else:
+        # We're in the middle somewhere
+        print ("%d hops away: " % i , reply.src)

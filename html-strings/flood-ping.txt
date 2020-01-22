@@ -3,11 +3,32 @@
       <div style='float:left;border:1px solid #009de0;padding:10px;background-color:#4d4d4d;'>
         <div class='flood-opt'>
           <label>Address <input class='table-panel-input' id='fp-host' style='width:40%;'></input></label>
-          <label>Size <input class='table-panel-input' id='fp-size' style='width:25%;'></input></label>
+          <label>Size <input class='table-panel-input' list="sizes" id='fp-size' style='width:25%;'></input></label>
+          <datalist id="sizes">
+            <option value="32">
+            <option value="64">
+            <option value="128">
+            <option value="256">
+            <option value="1024">
+            <option value="4096">
+            <option value="8192">
+          </datalist>
         </div>
         <div class='flood-opt'>
-          <label>Timeout <input class='table-panel-input' id='fp-timeout' style='width:25%;'></input></label>
-          <label>Packets <input class='table-panel-input' id='fp-packets' value='100' style='width:25%;'></input></label>
+          <label>Timeout <input class='table-panel-input' id='fp-timeout' style='width:25%;' list='t-out'></input></label>
+          <datalist id="t-out">
+            <option value="10">
+            <option value="100">
+            <option value="1000">
+          </datalist>
+          <label>Packets <input class='table-panel-input' list='packets' id='fp-packets' value='100' style='width:25%;'></input></label>
+          <datalist id="packets">
+            <option value="100">
+            <option value="200">
+            <option value="500">
+            <option value="1000">
+            <option value="10000">
+          </datalist>
         </div>
         <div class='flood-opt'>
           <button onclick="floodPing()" class='panel-but' style='width:100%;'>Start</button>

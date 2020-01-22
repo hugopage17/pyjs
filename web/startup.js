@@ -51,6 +51,7 @@ var sidebarItems = [
     name:'NIC',
     file:'nic.txt',
     domName:'nic',
+    img:'images/port.png',
     opened:false
   }
 ]
@@ -102,7 +103,7 @@ window.onload = async function(){
         ctx = document.getElementById('myScanChart').getContext('2d');
         window.myLine = new Chart(ctx, barConfig);
       }
-      else if(item.name == 'Bandwidth'){
+      else if(item.name == 'Throughput'){
         ctx = document.getElementById('myTrafficChart').getContext('2d');
         window.myLine = new Chart(ctx, trafficConfig);
       }
