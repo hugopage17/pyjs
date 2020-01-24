@@ -1,7 +1,8 @@
 <div class='panel-wrapper' name='ip-scan'>
   <div id='opt-menu'>
     <input placeholder='Example: 192.168.0.1-100 ' class='panel-input' id='ip-range'></input>
-    <button onclick="startIPScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
+    <button onclick="startIPScan()" class='panel-but' style="margin-right:10px;">Start</button>
+    <button onclick="arp()" class='panel-but' style="margin-right:10px;">Arp</button><br/>
     <div style='border-bottom:1px solid #009de0; margin-top:10px;margin-bottom:20px;'></div>
     <div style='margin:auto;width:50%;' id='spinner' hidden='true'>
       <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -14,6 +15,9 @@
           <th>Manufacturer</th>
         </tr>
       </table>
+    </div>
+    <div id='arp-data' style='color:white;font-weight:100;border:1px solid #009de0;padding:10px;line-height:2;' hidden='true'>
+
     </div>
     <div id='scan-bot-menu' hidden='true' style='margin-top:40px;'>
       <select id='vendor-select'>

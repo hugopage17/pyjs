@@ -1,0 +1,6 @@
+<div class='panel-wrapper' name='trace'>
+  <input placeholder='Destination' id='trace-dst' class='panel-input'/>
+  <button class='panel-but' onclick="startTrace()">Start</button><br/>
+  <div class="trace-loader" id='trace-loader' hidden='true'></div>
+  <div id='trace-res' hidden='true' style='color:white;line-height:2;border:1px solid #009de0;padding:10px;font-weight:100;'></div>
+</div>

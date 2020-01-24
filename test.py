@@ -1,18 +1,5 @@
-from scapy.all import *
+import subprocess
 
-hostname = "google.com"
-
-for i in range(1, 28):
-    pkt = IP(dst=hostname, ttl=i) / ICMP()
-    # Send the packet and get a reply
-    reply = sr1(pkt, verbose=0)
-    if reply is None:
-        # No reply =(
-        break
-    elif reply.type == 3:
-        # We've reached our destination
-        print ("Done!", reply.src)
-        break
-    else:
-        # We're in the middle somewhere
-        print ("%d hops away: " % i , reply.src)
+results = subprocess.check_output(["netsh", "interface", "ipv4", "set", "address", "name=Wi-Fi", "static", "192.168.3.8", "255.255.255.0", "192.168.3.1"])
+results = results.decode("ascii")
+print(results)

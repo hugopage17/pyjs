@@ -7,17 +7,16 @@ var sidebarItems = [
     opened:false
   },
   {
-    name: 'Wifi Scan',
-    file:'wifi.txt',
-    img:'images/wifi.png',
-    domName:'wifi-scan',
+    name:'Traceroute',
+    file:'trace.txt',
+    domName:'trace',
     opened:false
   },
   {
-    name:'Local Server',
-    file:'server.txt',
-    opened:false,
-    domName:'server',
+    name:'IP Scan',
+    file:'ipScan.txt',
+    img:'images/ip-scan.png',
+    domName:'ip-scan',
     opened:false
   },
   {
@@ -28,10 +27,16 @@ var sidebarItems = [
     opened:false
   },
   {
-    name:'IP Scan',
-    file:'ipScan.txt',
-    img:'images/ip-scan.png',
-    domName:'ip-scan',
+    name: 'Wifi Scan',
+    file:'wifi.txt',
+    img:'images/wifi.png',
+    domName:'wifi-scan',
+    opened:false
+  },
+  {
+    name:'HTTP API',
+    file:'api.txt',
+    domName:'api-test',
     opened:false
   },
   {
@@ -45,6 +50,13 @@ var sidebarItems = [
     name:'Flood Ping',
     file:'flood-ping.txt',
     domName:'flood-ping',
+    opened:false
+  },
+  {
+    name:'Local Server',
+    file:'server.txt',
+    opened:false,
+    domName:'server',
     opened:false
   },
   {

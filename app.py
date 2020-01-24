@@ -102,6 +102,13 @@ def wifi_scan(stn):
     return new_arr
 
 @eel.expose
+def wifi_analysis():
+    results = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=Bssid"])
+    results = results.decode("ascii")
+    return results
+
+
+@eel.expose
 def export():
     results = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=Bssid"])
     results = results.decode("ascii")
@@ -167,6 +174,12 @@ def ip_scan(range):
     return array_to_return
 
 @eel.expose
+def arp_scan():
+    results = subprocess.check_output(['arp','-a'])
+    results = results.decode("ascii")
+    return results
+
+@eel.expose
 def export_ip_scan(data):
     Tk().withdraw()
     f = filedialog.asksaveasfile(mode='w', defaultextension=".txt", initialfile='ip-scan')
@@ -217,5 +230,11 @@ def launch_server(port):
     with socketserver.TCPServer(("", port), Handler) as httpd:
         webbrowser.open('http://localhost:{}'.format(port))
         httpd.serve_forever()
+
+@eel.expose
+def tracert(dst):
+    results = subprocess.check_output(['tracert',dst])
+    results = results.decode("ascii")
+    return results
 
 eel.start('main.html', size=(1240, 860))

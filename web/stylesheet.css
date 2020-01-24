@@ -134,7 +134,13 @@ code {
 
 #wifi-displayer{
   color:white;
-
+  height:70vh;
+  overflow: auto;
+  border:1px solid #009de0;
+  padding:10px;
+  font-weight: 100;
+  line-height: 1.5;
+  margin:10px;
 }
 
 ::-webkit-scrollbar {
@@ -239,6 +245,7 @@ code {
 
 #sidebar{
   font-size: 14px;
+  margin-top: 50px;
 }
 
 h1{

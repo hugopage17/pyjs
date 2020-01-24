@@ -15,10 +15,14 @@
     </datalist>
     <button onclick="startScan()" class='panel-but' style="margin-right:10px;">Start</button><br/>
   </div>
-  <div class='graph-wrapper' >
-    <canvas id="myScanChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
-    <button id='upload-but' class='panel-but' onclick="exportFile()">Export</button>
-    <div id='wifi-displayer'></div>
+  <div id='wifi-displayer' hidden='true'></div>
+  <div class='graph-wrapper' id='wifi-graph-wrapper'>
+    <div id='wifi-graph-wrapper'>
+    <canvas id="myScanChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas>
+    </div><br/>
+    <div>
+      <button id='upload-but' class='panel-but' onclick="exportFile()">Export</button>
+      <button id='upload-but' class='panel-but' onclick="wifiAnalysis()">Analysis</button>
+    </div>
   </div>
-  <div></div>
 </div>

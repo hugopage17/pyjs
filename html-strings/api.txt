@@ -1,0 +1,17 @@
+<div class='panel-wrapper' name='api-test'>
+  <div>
+    <select id='api-req-type'>
+      <option value='get'>GET</option>
+      <option value='post'>POST</option>
+      <option value='patch'>PATCH</option>
+      <option value='delete'>DELETE</option>
+    </select>
+    <input placeholder='API Endpoint ' class='panel-input' id='api-input'></input>
+    <button onclick="startIPScan()" class='panel-but' style="margin-right:10px;">Enter</button>
+  </div>
+  <div id='header-menu'>
+    <label>Headers</label><br/>
+    <input class='panel-input' placeholder='Key'/><input class='panel-input' placeholder='Value'/>
+  </div>
+  <div style='border:1px solid #009de0; margin-top:10px;margin-bottom:20px;height:60vh;overflow:auto;' id='api-res'></div>
+</div>

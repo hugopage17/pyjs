@@ -127,6 +127,13 @@ async function startScan(){
   window.myLine.update()
 }
 
+async function wifiAnalysis(){
+  let data = await eel.wifi_analysis()();
+  document.getElementById('wifi-displayer').innerText = data
+  document.getElementById('wifi-graph-wrapper').hidden = true
+  document.getElementById('wifi-displayer').hidden = false
+}
+
 async function exportFile(){
   let data = await eel.export()();
   Swal.fire('Breakdown',data)
@@ -235,6 +242,12 @@ async function startIPScan(){
   document.getElementById('scan-bot-menu').hidden = false
 }
 
+async function arp(){
+  let data = await eel.arp_scan()();
+  document.getElementById('arp-data').hidden = false
+  document.getElementById('arp-data').innerText = data
+}
+
 async function exportIpScan(){
   const ip = document.getElementsByClassName('scan-table-ip')
   const mac = document.getElementsByClassName('scan-table-mac')
@@ -309,4 +322,14 @@ async function launchServer(){
   const port = document.getElementById('server-port').value
   let serve = await eel.launch_server(port)();
   alert('hello')
+}
+
+async function startTrace(){
+  document.getElementById('trace-loader').hidden = false
+  document.getElementById('trace-res').hidden = true
+  const dst = document.getElementById('trace-dst').value
+  let trace = await eel.tracert(dst)()
+  document.getElementById('trace-res').innerText = trace
+  document.getElementById('trace-loader').hidden = true
+  document.getElementById('trace-res').hidden = false
 }
