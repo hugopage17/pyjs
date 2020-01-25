@@ -32,11 +32,11 @@
       <label id='max' class='labels'></label>
       <label id='latency-avg' class='labels'></label>
     </div>
+    <button class='panel-but' onclick="alert()" style='float:right;'>Alert</button>
     <div style='float:right;'>
       <label id='packets-sent' class='labels'></label>
       <label id='packets-lost-ping' class='labels'></label>
     </div>
-    <button class='panel-but' onclick="alert()">Alert</button>
   </div>
   <div id='pulse-wrapper' style='position:absolute;left:40%;' hidden='true'>
     <div id='pulse' hidden='true'><span class="pulse"></span></div>
