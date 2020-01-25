@@ -183,6 +183,16 @@ code {
   outline: none;
 }
 
+.vendor-select{
+  background: none;
+  color:#009de0;
+  border:1px solid #009de0;
+  border-radius: 5px;
+  padding:10px;
+  cursor: pointer;
+  outline: none;
+}
+
 #vendor-select:hover{
   background-color: rgba(54, 162, 235, 0.2);
 }
@@ -267,6 +277,10 @@ h1{
 #each-flood-log{
   padding:10px;
   border-bottom: 1px solid rgba(54, 162, 235, 0.5);
+}
+
+#header-menu{
+  color:white;
 }
 
 @media only screen and (max-width: 1240px){

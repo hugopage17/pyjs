@@ -71,7 +71,7 @@ var sidebarItems = [
 let windows_opened = 0
 let nicData
 
-window.onload = async function(){
+window.onload = async function(){    
     var online = navigator.onLine;
     if(online == false){
       Swal.fire({

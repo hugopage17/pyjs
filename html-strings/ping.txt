@@ -22,17 +22,26 @@
     <button onclick="exportPing()" class='panel-but'>Export</button>
     <button onclick="clearPing()" class='panel-but'>Clear</button><br/>
   </div>
-  <div id='ping-counts'></div>
-  <div class='graph-wrapper'>
-    <canvas id="myChart" width="120" height="80"></canvas><br/>
+  <div id='ping-window-graph'>
+    <div id='ping-counts'></div>
+    <div class='graph-wrapper'>
+      <canvas id="myChart" width="120" height="80"></canvas><br/>
+    </div>
+    <div style='float:left;'>
+      <label id='min' class='labels'></label>
+      <label id='max' class='labels'></label>
+      <label id='latency-avg' class='labels'></label>
+    </div>
+    <div style='float:right;'>
+      <label id='packets-sent' class='labels'></label>
+      <label id='packets-lost-ping' class='labels'></label>
+    </div>
+    <button class='panel-but' onclick="alert()">Alert</button>
   </div>
-  <div style='float:left;'>
-    <label id='min' class='labels'></label>
-    <label id='max' class='labels'></label>
-    <label id='latency-avg' class='labels'></label>
-  </div>
-  <div style='float:right;'>
-    <label id='packets-sent' class='labels'></label>
-    <label id='packets-lost-ping' class='labels'></label>
+  <div id='pulse-wrapper' style='margin:auto;width:40%;' hidden='true'>
+    <div id='pulse' hidden='true'><span class="pulse"></span></div>
+    <div id='pulse-red' hidden='true'><span class="pulse-red"></span></div>
+    <p id='pulse-text' style='color:white;text-align:center;'></p>
+    <button class='panel-but' onclick="alert()" style='width:100%;text-align:center;'>Back</button>
   </div>
 </div>

@@ -1,5 +1,14 @@
-import subprocess
+from pythonping import ping
+from colorama import init
+from colorama import Fore, Back, Style
+from time import sleep
 
-results = subprocess.check_output(["netsh", "interface", "ipv4", "set", "address", "name=Wi-Fi", "static", "192.168.3.8", "255.255.255.0", "192.168.3.1"])
-results = results.decode("ascii")
-print(results)
+init()
+
+while True:
+    response_list = ping('172.25.41.91', size=32, timeout=1, count=1)
+    if response_list.rtt_avg_ms == 1000:
+        print(Fore.RED + 'OFFLINE')
+    else:
+        print(Fore.GREEN + 'ONLINE: '+str(response_list.rtt_avg_ms)+'ms')
+    sleep(1)

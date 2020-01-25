@@ -30,12 +30,16 @@ async function pingFunc(){
     else if(min == 0){
       min = value
     }
+    document.getElementById('pulse').hidden = false
+    document.getElementById('pulse-red').hidden = true
   }
   catch{
     time = value
     min = min
     max = max
     pingpl++
+    document.getElementById('pulse').hidden = true
+    document.getElementById('pulse-red').hidden = false
   }
   var p = document.createElement('DIV')
   p.id = 'ping-count-single'
@@ -67,6 +71,7 @@ async function pingFunc(){
   document.getElementById('packets-lost-ping').innerText = `Packets Loss: ${pingpl}`
   var element = document.getElementById("ping-counts");
   element.scrollTop = element.scrollHeight;
+  document.getElementById('pulse-text').innerText = `Response: ${time}`
   c++
 }
 
@@ -111,6 +116,12 @@ function clearPing(){
   c = 1
   pingpl = 0
 }
+
+function alert(){
+  document.getElementById('ping-window-graph').hidden = !document.getElementById('ping-window-graph').hidden;
+  document.getElementById('pulse-wrapper').hidden = !document.getElementById('pulse-wrapper').hidden;
+}
+
 
 let signals = []
 let ssids = []
