@@ -38,7 +38,7 @@
     </div>
     <button class='panel-but' onclick="alert()">Alert</button>
   </div>
-  <div id='pulse-wrapper' style='margin:auto;width:40%;' hidden='true'>
+  <div id='pulse-wrapper' style='position:absolute;left:40%;' hidden='true'>
     <div id='pulse' hidden='true'><span class="pulse"></span></div>
     <div id='pulse-red' hidden='true'><span class="pulse-red"></span></div>
     <p id='pulse-text' style='color:white;text-align:center;'></p>
