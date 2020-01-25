@@ -7,7 +7,7 @@
       <option value='delete'>DELETE</option>
     </select>
     <input placeholder='API Endpoint ' class='panel-input' id='api-input' style='width:70%;'></input>
-    <button onclick="startIPScan()" class='panel-but' style="margin-right:10px;">Enter</button>
+    <button onclick="apiRequest()" class='panel-but' style="margin-right:10px;">Enter</button>
   </div>
   <div style='margin-top:10px;margin-bottom:20px;'>
     <div id='header-menu' style='float:left;width:45%;'>
@@ -17,8 +17,8 @@
     </div>
     <div id='body-menu' style='width:45%;float:right;'>
       <label style='color:white;'>Body</label><br/>
-      <textarea style='background:#4d4d4d;color:white;border-radius:5px;border:1px solid #009de0;width:100%;height:10vh;'></textarea>
+      <textarea id='api-res-area' style='background:#4d4d4d;color:white;border-radius:5px;border:1px solid #009de0;width:100%;height:10vh;'></textarea>
     </div>
   </div>
-  <div style='border:1px solid #009de0; margin-top:10px;margin-bottom:20px;height:60vh;overflow:auto;clear:both;' id='api-res'></div>
+  <div style='background:#4d4d4d; padding:10px;font-weight:100;font-size:14px;border:1px solid #009de0; margin-top:10px;margin-bottom:20px;height:60vh;overflow:auto;clear:both;color:white;' id='api-res'></div>
 </div>

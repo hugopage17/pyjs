@@ -129,10 +129,6 @@
   box-shadow: 0 0 0 rgba(0,255,0,0.2);
   animation: pulse 2s infinite;
 }
-.pulse:hover {
-  animation: none;
-}
-
 @-webkit-keyframes pulse {
   0% {
     -webkit-box-shadow: 0 0 0 0 rgba(0,255,0,0.2);
@@ -171,10 +167,6 @@
   box-shadow: 0 0 0 rgba(255,0,0,0.2);
   animation: pulse-red 2s infinite;
 }
-.pulse-red:hover {
-  animation: none;
-}
-
 @-webkit-keyframes pulse-red {
   0% {
     -webkit-box-shadow: 0 0 0 0 rgba(255,0,0,0.2);

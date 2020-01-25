@@ -15,6 +15,7 @@ from tkinter import *
 import json
 import http.server
 import socketserver
+import requests
 
 eel.init('web')
 
@@ -236,5 +237,13 @@ def tracert(dst):
     results = subprocess.check_output(['tracert',dst])
     results = results.decode("ascii")
     return results
+
+@eel.expose
+def api_req(url):
+    r = requests.get(url)
+    res = r.json()
+    res = json.dumps(res, indent=4, sort_keys=True)
+    return res
+
 
 eel.start('main.html', size=(1240, 860))

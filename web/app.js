@@ -344,3 +344,12 @@ async function startTrace(){
   document.getElementById('trace-loader').hidden = true
   document.getElementById('trace-res').hidden = false
 }
+
+async function apiRequest(){
+  const url = document.getElementById('api-input').value
+  let req = eel.api_req(url)();
+  console.log(req);
+  req.then(res => {
+      document.getElementById('api-res').innerText = res
+  })
+}
