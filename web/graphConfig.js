@@ -57,7 +57,7 @@ var barConfig = {
 }
 
 var trafficConfig = {
-    type: 'line',
+    type: traffcGraphType,
     data: {
         labels: tcount,
         datasets: [{

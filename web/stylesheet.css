@@ -91,6 +91,7 @@ code {
   overflow: auto;
   border:1px solid #009de0;
   margin:10px;
+  background: #4d4d4d;
 }
 
 #ping-count-single{
@@ -129,6 +130,29 @@ code {
 
 .panel-input{
   width:20%;
+}
+
+.header-key-input{
+  width:30%;
+  margin:auto;
+  outline:none;
+  border:none;
+  border-bottom: 1px solid white;
+  background:none;
+  color:white;
+  margin-right: 40px;
+}
+
+.header-value-input{
+  width:30%;
+  margin:auto;
+  outline:none;
+  border:none;
+  border-bottom: 1px solid white;
+  background:none;
+  color:white;
+  margin-right: 40px;
+  margin-bottom: 20px;
 }
 
 
@@ -223,7 +247,7 @@ code {
 }
 
 #side-icon{
-  width:25%;
+  width:20%;
   cursor: pointer;
   vertical-align: middle;
   margin-left: 5px;
@@ -289,6 +313,9 @@ h1{
   }
   #side-icon{
     width:20%;
+  }
+  select{
+    font-size: 10px;
   }
   .panel-but{
     font-size:10px;

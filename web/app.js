@@ -72,6 +72,12 @@ async function pingFunc(){
   var element = document.getElementById("ping-counts");
   element.scrollTop = element.scrollHeight;
   document.getElementById('pulse-text').innerText = `Response: ${time}`
+  if(value >= (avg*4)){
+    var hl = document.createElement('label')
+    hl.innerText = 'High Latency'
+    hl.style.color = 'rgba(255,0,0)'
+    p.appendChild(hl)
+  }
   c++
 }
 
@@ -156,6 +162,7 @@ async function exportFile(){
 
 let tcount = []
 let tc = 1
+let traffcGraphType = 'line'
 async function captureTraffic(){
   const ip = document.getElementById('ip-add').value
   let traffic = await eel.capture_traffic(ip)();
@@ -169,6 +176,16 @@ async function captureTraffic(){
   document.getElementById('udp').innerText = traffic.types[1]
   document.getElementById('icmp').innerText = traffic.types[2]
   document.getElementById('other').innerText = traffic.types[3]
+}
+
+function switchWifiGraph(){
+  const checker = document.getElementById('traffic-graph-change').checked
+  if(checker == true){
+    traffcGraphType = 'bar'
+  }
+  else{
+    traffcGraphType = 'line'
+  }
 }
 
 let runCT
@@ -347,9 +364,31 @@ async function startTrace(){
 
 async function apiRequest(){
   const url = document.getElementById('api-input').value
-  let req = eel.api_req(url)();
-  console.log(req);
+  const reqType = document.getElementById('api-req-type').value
+  var headerKeys = document.getElementsByClassName('header-key-input')
+  var headerValues = document.getElementsByClassName('header-value-input')
+  var headers = {}
+  for (var i = 0; i < headerKeys.length; i++) {
+    const key = headerKeys[i].value
+    headers[key] = headerValues[i].value
+  }
+  let req = eel.api_req(url, reqType, headers)();
   req.then(res => {
-      document.getElementById('api-res').innerText = res
+      document.getElementById('api-res').innerText = res.res
+      document.getElementById('res-code').innerText = `Status Code: ${res.code}`
   })
+}
+
+function addHeader(){
+  var key = document.createElement('input')
+  key.classList.add('header-key-input')
+  key.style.width = '38%'
+  key.placeholder = 'Key'
+  var value = document.createElement('input')
+  value.classList.add('header-value-input')
+  value.style.width = '38%'
+  value.placeholder = 'Value'
+  document.getElementById('header-menu').appendChild(key)
+  document.getElementById('header-menu').appendChild(value)
+  document.getElementById('header-menu').appendChild(document.createElement('br'))
 }

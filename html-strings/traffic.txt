@@ -1,7 +1,11 @@
 <div class='panel-wrapper' name='traffic-capture'>
   <div id='opt-menu'>
     <input placeholder='Address' class='panel-input' id='ip-add'></input>
-    <button onclick="startCP()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopCP()" class='panel-but'>Stop</button><br/>
+    <button onclick="startCP()" class='panel-but' style="margin-right:10px;">Start</button><button onclick="stopCP()" class='panel-but'>Stop</button>
+    <label class="switch" id='switch-name' style='float:right;'>
+      <input type="checkbox" id='traffic-graph-change' onchange='switchWifiGraph()'/>
+      <span class="slider round"></span>
+    </label>
   </div>
   <div class='graph-wrapper'>
     <canvas id="myTrafficChart" width="120" height="560" style="border-bottom:1px solid rgba(0,157,224,0.5)"></canvas><br/>
