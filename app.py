@@ -239,17 +239,24 @@ def tracert(dst):
     return results
 
 @eel.expose
-def api_req(url, req_type, headers):
+def api_req(url, req_type, headers, body):
     if req_type == 'get':
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, timeout=5)
     elif req_type == 'post':
-        r = requests.post(url, headers=headers)
+        r = requests.post(url, headers=headers, data=body)
     res = r.json()
     res = json.dumps(res, indent=4, sort_keys=True)
     obj = {
         'res':res,
         'code':r.status_code
     }
+    data = {
+    'url':url,
+    'req_type':req_type,
+    'status_code':r.status_code
+    }
+    with open('data.json', 'a') as outfile:
+        json.dump(data, outfile)
     return obj
 
 

@@ -14,7 +14,7 @@
       <label>Headers</label>
       <button class='panel-but' onclick='addHeader()' style='padding:5px;'>Add +</button>
       <div id='header-menu' style='background:#4d4d4d;padding:2px;overflow:auto;height:15vh;border:1px solid #009de0;margin-top:2px;'>
-        <input class='header-key-input' placeholder='Key' style='width:38%;'/><input class='header-value-input' placeholder='Value' style='width:38%;'/><br/>
+        <input class='header-key-input' placeholder='Key' style='width:38%;' value='content-type'/><input class='header-value-input' placeholder='Value' style='width:38%;' value='application/json'/><br/>
       </div>
     </div>
     <div id='body-menu' style='width:50%;display:inline-block;'>

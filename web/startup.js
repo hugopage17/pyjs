@@ -37,6 +37,7 @@ var sidebarItems = [
     name:'HTTP API',
     file:'api.txt',
     domName:'api-test',
+    img:'images/api.png',
     opened:false
   },
   {
@@ -71,7 +72,7 @@ var sidebarItems = [
 let windows_opened = 0
 let nicData
 
-window.onload = async function(){    
+window.onload = async function(){
     var online = navigator.onLine;
     if(online == false){
       Swal.fire({

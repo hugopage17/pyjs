@@ -307,6 +307,8 @@ h1{
   color:white;
 }
 
+textarea {resize: none}
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;
