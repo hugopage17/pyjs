@@ -129,6 +129,23 @@ window.onload = async function(){
           document.getElementById('nic-div').appendChild(eachDiv)
         }
       }
+      else if (item.name == 'HTTP API'){
+        let api = await eel.api_history()()
+        for (var i = 0; i < api.length; i++) {
+          var div = document.createElement('div')
+          div.id = 'each-api-his'
+          var urlP = document.createElement('p')
+          urlP.innerText = api[i].url
+          var typeP = document.createElement('p')
+          typeP.innerText = api[i].type
+          var codeP = document.createElement('p')
+          codeP.innerText = api[i].code
+          div.appendChild(urlP)
+          div.appendChild(typeP)
+          div.appendChild(codeP)
+          document.getElementById('api-his-inner').appendChild(div)
+        }
+      }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){
         document.getElementsByTagName("canvas")[i].style.height = '500px';
       }

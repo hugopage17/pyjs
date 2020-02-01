@@ -24,4 +24,10 @@
   </div>
   <div style='background:#4d4d4d; padding:10px;font-weight:100;font-size:14px;border:1px solid #009de0;margin-bottom:20px;height:50vh;overflow:auto;clear:both;color:white;' id='api-res'></div>
   <p id='res-code' style='color:white;'></p>
+  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;'>History</label>
+  <div class='background-wrapper'>
+    <div id='api-his-inner'>
+
+    </div>
+  </div>
 </div>

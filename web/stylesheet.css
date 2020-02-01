@@ -309,6 +309,38 @@ h1{
 
 textarea {resize: none}
 
+.background-wrapper{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.75);
+}
+
+#api-his-inner{
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 10%;
+  bottom: 10%;
+  margin: auto;
+  color: white;
+  background-color: #4d4d4d;
+  text-align: center;
+  border:1px solid #009de0;
+  font-weight: 100;
+}
+
+#each-api-his{
+  border-bottom: 1px solid #009de0;
+  padding:10px;
+}
+
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;

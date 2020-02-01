@@ -255,9 +255,28 @@ def api_req(url, req_type, headers, body):
     'req_type':req_type,
     'status_code':r.status_code
     }
-    with open('data.json', 'a') as outfile:
-        json.dump(data, outfile)
+    with open('api_history.txt', 'a') as outfile:
+        outfile.write('{},{},{}{}'.format(url,req_type,r.status_code,'\n'))
     return obj
+
+@eel.expose
+def api_history():
+    file  = open("api_history.txt", "r")
+    f = file.read()
+    f = f.split('\n')
+    arr = []
+    for line in f:
+        l = line.split(',')
+        try:
+            obj = {
+                'url':l[0],
+                'type':l[1],
+                'code':l[2]
+            }
+            arr.append(obj)
+        except:
+            pass
+    return arr
 
 
 eel.start('main.html', size=(1240, 860))

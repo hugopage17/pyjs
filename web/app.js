@@ -373,11 +373,9 @@ async function apiRequest(){
     const key = headerKeys[i].value
     headers[key] = headerValues[i].value
   }
-  let req = eel.api_req(url, reqType, headers, body)();
-  req.then(res => {
-      document.getElementById('api-res').innerText = res.res
-      document.getElementById('res-code').innerText = `Status Code: ${res.code}`
-  })
+  let req = await eel.api_req(url, reqType, headers, body)();
+  document.getElementById('api-res').innerText = req.res
+  document.getElementById('res-code').innerText = `Status Code: ${req.code}`
 }
 
 function addHeader(){
