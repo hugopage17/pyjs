@@ -136,16 +136,26 @@ window.onload = async function(){
           div.id = 'each-api-his'
           var urlP = document.createElement('p')
           urlP.innerText = api[i].url
+          urlP.classList.add('api-hist-url')
           var typeP = document.createElement('p')
           typeP.innerText = api[i].type
+          typeP.classList.add('api-hist-type')
           var codeP = document.createElement('p')
-          codeP.innerText = api[i].code
+          codeP.innerText = `Status Code: ${api[i].code}`
+          codeP.classList.add('api-hist-code')
+          if(api[i].type == 'get'){
+            typeP.style.color = 'rgba(0,255,0)'
+            typeP.style.border = '1px solid rgba(0,255,0)'
+          }
+          else if(api[i].type == 'delete'){
+            typeP.style.color = 'rgba(255,0,0)'
+            typeP.style.border = '1px solid rgba(255,0,0)'
+          }
+          div.appendChild(codeP)
           div.appendChild(urlP)
           div.appendChild(typeP)
-          div.appendChild(codeP)
           document.getElementById('api-his-inner').appendChild(div)
-        }
-      }
+      }}
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){
         document.getElementsByTagName("canvas")[i].style.height = '500px';
       }

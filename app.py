@@ -240,15 +240,26 @@ def tracert(dst):
 
 @eel.expose
 def api_req(url, req_type, headers, body):
+    r = ''
     if req_type == 'get':
-        r = requests.get(url, headers=headers, timeout=5)
+        r = requests.get(url, headers=headers, timeout=10)
     elif req_type == 'post':
         r = requests.post(url, headers=headers, data=body)
+    elif req_type == 'delete':
+        r = requests.delete(url, headers=headers)
     res = r.json()
     res = json.dumps(res, indent=4, sort_keys=True)
+    time = r.elapsed.total_seconds()
+    if time < 0.1:
+        time = str(time*100)+'ms'
+    elif time < 1:
+        time = str(time*10)+'ms'
+    else:
+        time = str(time)+'s'
     obj = {
         'res':res,
-        'code':r.status_code
+        'code':r.status_code,
+        'time':time
     }
     data = {
     'url':url,
@@ -258,6 +269,11 @@ def api_req(url, req_type, headers, body):
     with open('api_history.txt', 'a') as outfile:
         outfile.write('{},{},{}{}'.format(url,req_type,r.status_code,'\n'))
     return obj
+
+@eel.expose
+def api_save(url,req_type,code,headers,body):
+    with open('api_save.txt', 'a') as outfile:
+        outfile.write('{},{},{},{}{}'.format(url,req_type,code,body,'\n'))
 
 @eel.expose
 def api_history():

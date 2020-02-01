@@ -6,15 +6,18 @@
       <option value='patch'>PATCH</option>
       <option value='delete'>DELETE</option>
     </select>
-    <input placeholder='API Endpoint ' class='panel-input' id='api-input' style='width:77%;' value='https://jsonplaceholder.typicode.com/todos/'></input>
+    <input placeholder='API Endpoint ' class='panel-input' id='api-input' style='width:70%;' value='https://jsonplaceholder.typicode.com/todos/'></input>
     <button onclick="apiRequest()" class='panel-but' style="margin-right:10px;">Enter</button>
+    <button onclick="apiSave()" class='panel-but' style="margin-right:10px;">Save</button>
   </div>
   <div style='margin-top:10px;'>
     <div style='display:inline-block;width:49%;color:white;'>
       <label>Headers</label>
       <button class='panel-but' onclick='addHeader()' style='padding:5px;'>Add +</button>
       <div id='header-menu' style='background:#4d4d4d;padding:2px;overflow:auto;height:15vh;border:1px solid #009de0;margin-top:2px;'>
-        <input class='header-key-input' placeholder='Key' style='width:38%;' value='content-type'/><input class='header-value-input' placeholder='Value' style='width:38%;' value='application/json'/><br/>
+        <input type="checkbox" class='api-header-checkbox' checked='true'>
+        <input class='header-key-input' placeholder='Key' style='width:33%;' value='content-type'/><input class='header-value-input' placeholder='Value' style='width:33%;' value='application/json'/>
+        <button class='close-but'>x</button><br/>
       </div>
     </div>
     <div id='body-menu' style='width:50%;display:inline-block;'>
@@ -23,11 +26,14 @@
     </div>
   </div>
   <div style='background:#4d4d4d; padding:10px;font-weight:100;font-size:14px;border:1px solid #009de0;margin-bottom:20px;height:50vh;overflow:auto;clear:both;color:white;' id='api-res'></div>
-  <p id='res-code' style='color:white;'></p>
-  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;'>History</label>
-  <div class='background-wrapper'>
-    <div id='api-his-inner'>
+  <label id='res-code' style='color:white;margin-right:10px;font-size:12px;'></label>
+  <label id='res-time' style='color:white;font-size:12px;'></label>
+  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;' onclick='apiHistory()'>History</label>
+  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;margin-right:20px;' onclick='apiHistory()'>Saved</label>
+  <div class='background-wrapper' hidden='true' id='api-wrapper'>
 
+    <div id='api-his-inner' style='overflow:auto;'>
+      <label style='color:#009de0;cursor:pointer;padding:5px;font-size:14px;margin-right:20px;' onclick='apiHistory()'>Close</label>
     </div>
   </div>
 </div>

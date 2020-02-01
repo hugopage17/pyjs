@@ -200,74 +200,83 @@ function stopCP(){
 
 async function startIPScan(){
   range = document.getElementById('ip-range').value
-  document.getElementById('spinner').hidden = false
-  let results = await eel.ip_scan(range)()
-  document.getElementById('spinner').hidden = true
-  var displayer = document.getElementById('ip-discovered')
-  displayer.hidden = false
-  var table = document.getElementById('ip-table')
-  var vendorList = []
-  var vendorMenu = document.getElementById('vendor-select')
-  for (var i = 0; i < results.length; i++) {
-    var vendorAdded = false
-    var d = document.createElement('tr')
-    d.classList.add('vendor-opt');
-    d.id = 'inner-ip-scan'
-    var ip = document.createElement('th')
-    ip.innerText = `${results[i].ip}`
-    ip.classList.add('scan-table-ip');
-    d.appendChild(ip)
-    if(results[i].https_code != 'no HTTPS'){
-      var ipAdd = results[i].ip
-      let launchBut = document.createElement('button')
-      launchBut.style.marginLeft = '10px'
-      launchBut.id = 'table-but'
-      launchBut.onclick = function(){
-        window.open(`https://${ipAdd}`);
-      }
-      launchBut.innerText = 'Open'
-      ip.appendChild(launchBut)
-    }
-    if(results[i].mac != null){
-      var mac = document.createElement('th')
-      mac.innerText = `${results[i].mac}`
-      mac.classList.add('scan-table-mac');
-      var vendor = document.createElement('th')
-      vendor.innerText = `${results[i].vendor}`
-      vendor.classList.add('scan-table-vendor');
-      for (var j=0; j < vendorList.length; j++) {
-        if(results[i].vendor == vendorList[j]){
-          vendorAdded = true
+  if(range != ''){
+    document.getElementById('spinner').hidden = false
+    let results = await eel.ip_scan(range)()
+    document.getElementById('spinner').hidden = true
+    var displayer = document.getElementById('ip-discovered')
+    displayer.hidden = false
+    var table = document.getElementById('ip-table')
+    var vendorList = []
+    var vendorMenu = document.getElementById('vendor-select')
+    for (var i = 0; i < results.length; i++) {
+      var vendorAdded = false
+      var d = document.createElement('tr')
+      d.classList.add('vendor-opt');
+      d.id = 'inner-ip-scan'
+      var ip = document.createElement('th')
+      ip.innerText = `${results[i].ip}`
+      ip.classList.add('scan-table-ip');
+      d.appendChild(ip)
+      if(results[i].https_code != 'no HTTPS'){
+        var ipAdd = results[i].ip
+        let launchBut = document.createElement('button')
+        launchBut.style.marginLeft = '10px'
+        launchBut.id = 'table-but'
+        launchBut.onclick = function(){
+          window.open(`https://${ipAdd}`);
         }
+        launchBut.innerText = 'Open'
+        ip.appendChild(launchBut)
       }
-      if(vendorAdded == false){
-        vendorList.push(results[i].vendor)
-        var newVen = document.createElement('option')
-        newVen.innerText = results[i].vendor
-        newVen.value = results[i].vendor
-        vendorMenu.appendChild(newVen)
+      if(results[i].mac != null){
+        var mac = document.createElement('th')
+        mac.innerText = `${results[i].mac}`
+        mac.classList.add('scan-table-mac');
+        var vendor = document.createElement('th')
+        vendor.innerText = `${results[i].vendor}`
+        vendor.classList.add('scan-table-vendor');
+        for (var j=0; j < vendorList.length; j++) {
+          if(results[i].vendor == vendorList[j]){
+            vendorAdded = true
+          }
+        }
+        if(vendorAdded == false){
+          vendorList.push(results[i].vendor)
+          var newVen = document.createElement('option')
+          newVen.innerText = results[i].vendor
+          newVen.value = results[i].vendor
+          vendorMenu.appendChild(newVen)
+        }
+        d.appendChild(mac)
+        d.appendChild(vendor)
       }
-      d.appendChild(mac)
-      d.appendChild(vendor)
+      table.appendChild(d)
     }
-    table.appendChild(d)
-  }
-  vendorMenu.onchange = function(event){
-    var options = document.getElementsByClassName('vendor-opt')
-    for (var i = 0; i < options.length; i++) {
-      if(event.target.value != 'all'){
-        if(options[i].childNodes[2].innerText == event.target.value){
+    vendorMenu.onchange = function(event){
+      var options = document.getElementsByClassName('vendor-opt')
+      for (var i = 0; i < options.length; i++) {
+        if(event.target.value != 'all'){
+          if(options[i].childNodes[2].innerText == event.target.value){
+            options[i].hidden = false
+          }else{
+            options[i].hidden = true
+          }
+        }
+        else{
           options[i].hidden = false
-        }else{
-          options[i].hidden = true
         }
       }
-      else{
-        options[i].hidden = false
-      }
     }
+    document.getElementById('scan-bot-menu').hidden = false
   }
-  document.getElementById('scan-bot-menu').hidden = false
+  else{
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid IP Range',
+      text: 'Please enter a valid IP range e.g 192.168.1.1-254'
+    })
+  }
 }
 
 async function arp(){
@@ -376,18 +385,47 @@ async function apiRequest(){
   let req = await eel.api_req(url, reqType, headers, body)();
   document.getElementById('api-res').innerText = req.res
   document.getElementById('res-code').innerText = `Status Code: ${req.code}`
+  document.getElementById('res-time').innerText = `Response Time: ${req.time}`
+}
+
+async function apiHistory(){
+  document.getElementById('api-wrapper').hidden = !document.getElementById('api-wrapper').hidden
 }
 
 function addHeader(){
   var key = document.createElement('input')
   key.classList.add('header-key-input')
-  key.style.width = '38%'
+  key.style.width = '33%'
   key.placeholder = 'Key'
   var value = document.createElement('input')
   value.classList.add('header-value-input')
-  value.style.width = '38%'
+  value.style.width = '33%'
   value.placeholder = 'Value'
+  var checkbox = document.createElement('input')
+  checkbox.type = 'checkbox'
+  checkbox.classList.add('api-header-checkbox')
+  checkbox.checked = true
+  var but = document.createElement('button')
+  but.classList.add('close-but')
+  but.innerText = 'x'
+  document.getElementById('header-menu').appendChild(checkbox)
   document.getElementById('header-menu').appendChild(key)
   document.getElementById('header-menu').appendChild(value)
+  document.getElementById('header-menu').appendChild(but)
   document.getElementById('header-menu').appendChild(document.createElement('br'))
+}
+
+async function apiSave(){
+  const url = document.getElementById('api-input').value
+  const reqType = document.getElementById('api-req-type').value
+  const code = document.getElementById('res-code').innerText
+  var headerKeys = document.getElementsByClassName('header-key-input')
+  var headerValues = document.getElementsByClassName('header-value-input')
+  const body = document.getElementById('api-res-area').value
+  var headers = {}
+  for (var i = 0; i < headerKeys.length; i++) {
+    const key = headerKeys[i].value
+    headers[key] = headerValues[i].value
+  }
+  let save = await eel.api_save(url, reqType, code, headers, body)();
 }
