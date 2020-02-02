@@ -18,6 +18,9 @@
         <input type="checkbox" class='api-header-checkbox' checked='true'>
         <input class='header-key-input' placeholder='Key' style='width:33%;' value='content-type'/><input class='header-value-input' placeholder='Value' style='width:33%;' value='application/json'/>
         <button class='close-but'>x</button><br/>
+        <input type="checkbox" class='api-header-checkbox' checked='true'>
+        <input class='header-key-input' placeholder='Key' style='width:33%;' value='accept'/><input class='header-value-input' placeholder='Value' style='width:33%;' value='application/json'/>
+        <button class='close-but'>x</button><br/>
       </div>
     </div>
     <div id='body-menu' style='width:50%;display:inline-block;'>

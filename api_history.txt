@@ -9,3 +9,17 @@ https://jsonplaceholder.typicode.com/todos/,get,200
 https://jsonplaceholder.typicode.com/todos/,post,201
 https://jsonplaceholder.typicode.com/todos/999,delete,200
 https://jsonplaceholder.typicode.com/todos/17,delete,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,post,201
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,get,200
+https://jsonplaceholder.typicode.com/todos/,post,201
+https://jsonplaceholder.typicode.com/todos/,post,201
+https://jsonplaceholder.typicode.com/todos/30,delete,200

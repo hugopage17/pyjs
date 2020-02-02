@@ -16,6 +16,7 @@ import json
 import http.server
 import socketserver
 import requests
+import math
 
 eel.init('web')
 
@@ -250,6 +251,7 @@ def api_req(url, req_type, headers, body):
     res = r.json()
     res = json.dumps(res, indent=4, sort_keys=True)
     time = r.elapsed.total_seconds()
+    time = math.ceil(time*100)/100
     if time < 0.1:
         time = str(time*100)+'ms'
     elif time < 1:

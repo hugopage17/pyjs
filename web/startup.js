@@ -131,6 +131,7 @@ window.onload = async function(){
       }
       else if (item.name == 'HTTP API'){
         let api = await eel.api_history()()
+        api = api.reverse();
         for (var i = 0; i < api.length; i++) {
           var div = document.createElement('div')
           div.id = 'each-api-his'
@@ -143,6 +144,10 @@ window.onload = async function(){
           var codeP = document.createElement('p')
           codeP.innerText = `Status Code: ${api[i].code}`
           codeP.classList.add('api-hist-code')
+          var openBut = document.createElement('button')
+          openBut.innerText = 'Open'
+          openBut.classList.add('panel-but')
+          openBut.style.float = 'right'
           if(api[i].type == 'get'){
             typeP.style.color = 'rgba(0,255,0)'
             typeP.style.border = '1px solid rgba(0,255,0)'
@@ -154,6 +159,7 @@ window.onload = async function(){
           div.appendChild(codeP)
           div.appendChild(urlP)
           div.appendChild(typeP)
+          div.appendChild(openBut)
           document.getElementById('api-his-inner').appendChild(div)
       }}
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){
