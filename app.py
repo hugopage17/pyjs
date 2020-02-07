@@ -248,8 +248,11 @@ def api_req(url, req_type, headers, body):
         r = requests.post(url, headers=headers, data=body)
     elif req_type == 'delete':
         r = requests.delete(url, headers=headers)
-    res = r.json()
-    res = json.dumps(res, indent=4, sort_keys=True)
+    try:
+        res = r.json()
+        res = json.dumps(res, indent=4, sort_keys=True)
+    except:
+        res = r.text.encode('utf8')
     time = r.elapsed.total_seconds()
     time = math.ceil(time*100)/100
     if time < 0.1:
@@ -268,33 +271,7 @@ def api_req(url, req_type, headers, body):
     'req_type':req_type,
     'status_code':r.status_code
     }
-    with open('api_history.txt', 'a') as outfile:
-        outfile.write('{},{},{}{}'.format(url,req_type,r.status_code,'\n'))
     return obj
-
-@eel.expose
-def api_save(url,req_type,code,headers,body):
-    with open('api_save.txt', 'a') as outfile:
-        outfile.write('{},{},{},{}{}'.format(url,req_type,code,body,'\n'))
-
-@eel.expose
-def api_history():
-    file  = open("api_history.txt", "r")
-    f = file.read()
-    f = f.split('\n')
-    arr = []
-    for line in f:
-        l = line.split(',')
-        try:
-            obj = {
-                'url':l[0],
-                'type':l[1],
-                'code':l[2]
-            }
-            arr.append(obj)
-        except:
-            pass
-    return arr
 
 
 eel.start('main.html', size=(1240, 860))

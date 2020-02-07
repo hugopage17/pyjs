@@ -12,8 +12,105 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <link rel="stylesheet" type="text/css" href="spinner.css">
     <link rel="stylesheet" type="text/css" href="slider.css">
+    <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.3.0/css/zocial.min.css'>
   </head>
   <body>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+    <script>
+      var firebaseConfig = {
+          apiKey: "AIzaSyAhGIOWLl2PxgB569Jz_tXX-pk1khA3vlQ",
+          authDomain: "py-js-e8251.firebaseapp.com",
+          databaseURL: "https://py-js-e8251.firebaseio.com",
+          projectId: "py-js-e8251",
+          storageBucket: "py-js-e8251.appspot.com",
+          messagingSenderId: "427192647830",
+          appId: "1:427192647830:web:f57900a1ee8d44a1e8c2b7",
+          measurementId: "G-1CX57NKSPP"
+        }
+
+      firebase.initializeApp(firebaseConfig)
+      function signupGoogle(){
+        let profileURL
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var exists = false
+        firebase.auth().signInWithPopup(provider).then((result) => {
+          var token = result.credential.accessToken;
+          var user = result.user;
+        })
+      }
+
+      function submitLicense(){
+        var id = firebase.auth().currentUser.uid
+        firebase.database().ref(`${id}/licenseKey`).once('value').then((snapshot)=>{
+          var licenseKey = snapshot.val()
+          var entry = document.getElementById('license-key').value
+          if(entry == licenseKey){
+            firebase.database().ref(id).update({activated:true})
+            Swal.fire({
+              icon:'success',
+              text: 'Your account is now activated'
+            }).then(()=>{
+              document.getElementById('activate-wrapper').hidden = true
+            })
+          }
+          else{
+            Swal.fire({
+              icon:'error',
+              text: 'Invalid License Key'
+            })
+            document.getElementById('license-key').value = ''
+          }
+        })
+      }
+      firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          firebase.database().ref(`${user.uid}/activated`).once('value').then((snapshot)=>{
+            var activated = snapshot.val()
+            if(activated == false){
+              document.getElementById('activate-wrapper').hidden = false
+            }else{
+              var today = new Date();
+              var dd = String(today.getDate()).padStart(2, '0')
+              var mm = String(today.getMonth() + 1).padStart(2, '0')
+              var yyyy = today.getFullYear()
+              today = mm + '/' + dd + '/' + yyyy
+              firebase.database().ref(firebase.auth().currentUser.uid).update({lastOpened:today})
+            }
+          })
+        }
+        else{
+          document.getElementById('login-wrapper').hidden = false
+        }
+      })
+    </script>
+    <div id='login-wrapper' hidden='true'>
+      <div id='login-page'>
+        <div style='border-bottom:1px solid #009de0;'>
+          <h1>Login Below</h1>
+        </div>
+        <div style='padding:10px;'>
+          <input class='panel-input' placeholder="email" type='email' style='width:100%;font-size:16px;margin-bottom:40px;'/>
+          <input class='panel-input' style='width:100%;font-size:16px;margin-bottom:40px;' placeholder='password' type='password'/>
+          <button class='panel-but' style='width:100%;'>Login</button>
+        </div>
+        <div style='border-top:1px solid #009de0;'>
+          <p>Or sign in with</p>
+          <a class="zocial google" onclick='signupGoogle()'>Google</a>
+          <a class="zocial microsoft">Microsoft</a>
+        </div>
+      </div>
+    </div>
+    <div id='activate-wrapper' hidden='true'>
+      <div id='activate-page'>
+        <h1>Activate Your Account</h1>
+        <p>Enter your License Key below</p>
+        <input id='license-key' class='panel-input' placeholder='License Key' style='width:100%;margin-bottom:20px;'/>
+        <button class='panel-but' style='width:100%;' onclick='submitLicense()'>Submit</button>
+      </div>
+    </div>
     <div id='wrapper'>
       <div id='top-bar'><p id='user'></p></div>
       <div id='sidebar'></div>

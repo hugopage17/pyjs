@@ -10,6 +10,7 @@ var sidebarItems = [
     name:'Traceroute',
     file:'trace.txt',
     domName:'trace',
+    img:'images/traceroute.png',
     opened:false
   },
   {
@@ -51,13 +52,15 @@ var sidebarItems = [
     name:'Flood Ping',
     file:'flood-ping.txt',
     domName:'flood-ping',
+    img:'images/flood.png',
     opened:false
   },
   {
-    name:'Local Server',
+    name:'Web Server',
     file:'server.txt',
     opened:false,
     domName:'server',
+    img:'images/server.png',
     opened:false
   },
   {
@@ -110,6 +113,17 @@ window.onload = async function(){
       }
       let ctx
       if(item.name == 'Ping'){
+        firebase.database().ref(firebase.auth().currentUser.uid+'/pingHistory').once('value').then((snap)=>{
+          const data = snap.val()
+          Object.keys(data).map((key, index) => {
+            const add = data[key]
+            Object.keys(add).map((key, index) => {
+              var opt = document.createElement('option')
+              opt.value = add[key]
+              document.getElementById('ping-hist').appendChild(opt)
+            })
+          })
+        })
         ctx = document.getElementById('myChart').getContext('2d');
         window.myLine = new Chart(ctx, config);
       }else if(item.name == 'Wifi Scan'){
@@ -130,38 +144,41 @@ window.onload = async function(){
         }
       }
       else if (item.name == 'HTTP API'){
-        let api = await eel.api_history()()
-        api = api.reverse();
-        for (var i = 0; i < api.length; i++) {
-          var div = document.createElement('div')
-          div.id = 'each-api-his'
-          var urlP = document.createElement('p')
-          urlP.innerText = api[i].url
-          urlP.classList.add('api-hist-url')
-          var typeP = document.createElement('p')
-          typeP.innerText = api[i].type
-          typeP.classList.add('api-hist-type')
-          var codeP = document.createElement('p')
-          codeP.innerText = `Status Code: ${api[i].code}`
-          codeP.classList.add('api-hist-code')
-          var openBut = document.createElement('button')
-          openBut.innerText = 'Open'
-          openBut.classList.add('panel-but')
-          openBut.style.float = 'right'
-          if(api[i].type == 'get'){
-            typeP.style.color = 'rgba(0,255,0)'
-            typeP.style.border = '1px solid rgba(0,255,0)'
-          }
-          else if(api[i].type == 'delete'){
-            typeP.style.color = 'rgba(255,0,0)'
-            typeP.style.border = '1px solid rgba(255,0,0)'
-          }
-          div.appendChild(codeP)
-          div.appendChild(urlP)
-          div.appendChild(typeP)
-          div.appendChild(openBut)
-          document.getElementById('api-his-inner').appendChild(div)
-      }}
+        firebase.database().ref(firebase.auth().currentUser.uid+'/apiHistory').once('value', function(snap){
+          var data = snap.val()
+          Object.keys(data).map((key, index) => {
+            const api = data[key]
+            var div = document.createElement('div')
+            div.id = 'each-api-his'
+            var urlP = document.createElement('p')
+            urlP.innerText = api.url
+            urlP.classList.add('api-hist-url')
+            var typeP = document.createElement('p')
+            typeP.innerText = api.reqType
+            typeP.classList.add('api-hist-type')
+            var codeP = document.createElement('p')
+            codeP.innerText = `Status Code: ${api.code}`
+            codeP.classList.add('api-hist-code')
+            var openBut = document.createElement('button')
+            openBut.innerText = 'Open'
+            openBut.classList.add('panel-but')
+            openBut.style.float = 'right'
+            if(api.reqType == 'get'){
+              typeP.style.color = 'rgba(0,255,0)'
+              typeP.style.border = '1px solid rgba(0,255,0)'
+            }
+            else if(api.reqType == 'delete'){
+              typeP.style.color = 'rgba(255,0,0)'
+              typeP.style.border = '1px solid rgba(255,0,0)'
+            }
+            div.appendChild(codeP)
+            div.appendChild(urlP)
+            div.appendChild(typeP)
+            div.appendChild(openBut)
+            document.getElementById('api-his-inner').appendChild(div)
+          })
+        })
+      }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){
         document.getElementsByTagName("canvas")[i].style.height = '500px';
       }

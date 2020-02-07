@@ -8,7 +8,7 @@ let pingpl = 0
 
 async function pingFunc(){
   count.push(c)
-  let ip = document.getElementById('name').value
+  let ip = document.getElementById('ping-host-name').value
   let size = document.getElementById('size').value
   let timeout = document.getElementById('timeout').value
   let value = await eel.ping_ip(ip, size, timeout)();
@@ -85,6 +85,13 @@ let runPing
 
 function startPing() {
   runPing = setInterval(pingFunc,document.getElementById('timeout').value)
+  var add = document.getElementById('ping-host-name').value
+  var obj = {}
+  var addName = add.split('.')
+  var addString = addName[0].concat(addName[1],addName[2],addName[3])
+  console.log(addString);
+  obj[addString] = add
+  firebase.database().ref(firebase.auth().currentUser.uid+'/pingHistory/'+addString).set(obj)
 }
 
 function stopPing(){
@@ -383,9 +390,21 @@ async function apiRequest(){
     headers[key] = headerValues[i].value
   }
   let req = await eel.api_req(url, reqType, headers, body)();
+  const code = req.code
   document.getElementById('api-res').innerText = req.res
   document.getElementById('res-code').innerText = `Status Code: ${req.code}`
   document.getElementById('res-time').innerText = `Response Time: ${req.time}`
+  let uniqueKey = ''
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+   for ( var i = 0; i < 7; i++ ) {
+      uniqueKey += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+  firebase.database().ref(firebase.auth().currentUser.uid+'/apiHistory/'+uniqueKey).set({
+    url:url,
+    reqType:reqType,
+    code:code
+  })
 }
 
 async function apiHistory(){

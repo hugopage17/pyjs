@@ -1,6 +1,7 @@
 <div class='panel-wrapper' name='ping-test'>
   <div id='opt-menu'>
-    <input type='text' id='name' placeholder='Address' class='panel-input'></input>
+    <input type='text' id='ping-host-name' list='ping-hist' placeholder='Address' class='panel-input' maxlength="15"></input>
+    <datalist id='ping-hist'></datalist>
     <input list="sizes" name="myBrowser" id='size' placeholder='Byte Size' class='panel-input'></input>
     <datalist id="sizes">
       <option value="32">
