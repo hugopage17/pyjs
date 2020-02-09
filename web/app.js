@@ -89,7 +89,6 @@ function startPing() {
   var obj = {}
   var addName = add.split('.')
   var addString = addName[0].concat(addName[1],addName[2],addName[3])
-  console.log(addString);
   obj[addString] = add
   firebase.database().ref(firebase.auth().currentUser.uid+'/pingHistory/'+addString).set(obj)
 }
@@ -117,8 +116,6 @@ function clearPing(){
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild)
   }
-  config.data.datasets[0].data = []
-  window.myLine.update()
   document.getElementById('latency-avg').innerText = ``
   document.getElementById('min').innerText = ``
   document.getElementById('max').innerText = ``
@@ -128,6 +125,8 @@ function clearPing(){
   count = []
   c = 1
   pingpl = 0
+  config.data.labels = count
+  window.myLine.update()
 }
 
 function alert(){
@@ -281,6 +280,7 @@ async function startIPScan(){
     Swal.fire({
       icon: 'error',
       title: 'Invalid IP Range',
+      background:'#4d4d4d',
       text: 'Please enter a valid IP range e.g 192.168.1.1-254'
     })
   }
@@ -434,7 +434,11 @@ function addHeader(){
   document.getElementById('header-menu').appendChild(document.createElement('br'))
 }
 
-async function apiSave(){
+function openSaveBox(){
+  document.getElementById('api-save-wrapper').hidden = !document.getElementById('api-save-wrapper').hidden
+}
+
+function apiSave(){
   const url = document.getElementById('api-input').value
   const reqType = document.getElementById('api-req-type').value
   const code = document.getElementById('res-code').innerText
@@ -446,5 +450,47 @@ async function apiSave(){
     const key = headerKeys[i].value
     headers[key] = headerValues[i].value
   }
-  let save = await eel.api_save(url, reqType, code, headers, body)();
+  const name = document.getElementById('api-saved-name').value
+  const desc = document.getElementById('api-save-desc').value
+  firebase.database().ref(firebase.auth().currentUser.uid+'/apiSaved/'+name).set({
+    name:name,
+    desc:desc,
+    url:url,
+    type:reqType,
+    headerKeys:headerKeys,
+    headerValues:headerValues,
+    body:body
+  }).then(()=>{
+    Swal.fire({
+      icon:'success',
+      background:'#4d4d4d',
+      text:'Request successfully saved'
+    }).then(()=>{
+      openSaveBox()
+    })
+  }).catch(()=>{
+    Swal.fire({
+      icon:'error',
+      background:'#4d4d4d',
+      text:'Request failed to save'
+    })
+  })
+}
+
+function openSavedApi(){
+  document.getElementById('api-saved-wrapper').hidden = !document.getElementById('api-saved-wrapper').hidden
+}
+
+function logout(){
+  Swal.fire({
+    icon:'warning',
+    background:'#4d4d4d',
+    text:'Are you sure you want to logout',
+    showCancelButton: true
+  }).then((val)=>{
+    if(val.value == true){
+      firebase.auth().signOut()
+      location.reload();
+    }
+  })
 }

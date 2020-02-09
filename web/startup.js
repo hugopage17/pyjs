@@ -69,6 +69,13 @@ var sidebarItems = [
     domName:'nic',
     img:'images/port.png',
     opened:false
+  },
+  {
+    name:'Account',
+    file:'settings.txt',
+    domName:'settings',
+    opened:false,
+    img:'images/account.png'
   }
 ]
 
@@ -81,12 +88,13 @@ window.onload = async function(){
       Swal.fire({
         icon: 'warning',
         title: 'No Connection',
-        text: 'You are not connected to the network',
-        footer: '<a href>Why do I have this issue?</a>'
+        background:'#4d4d4d',
+        text: 'You are not connected to the internet'
       })
     }
-  let user = await eel.get_user()();
-  document.getElementById('user').innerText = `Welcome ${user}`
+    setTimeout(()=>{
+      document.getElementById('user').innerText = `Welcome ${firebase.auth().currentUser.displayName}`
+    },1000)
   let nic = await eel.get_nic()()
   nicData = nic
   sidebarItems.map((item)=>{
@@ -103,6 +111,7 @@ window.onload = async function(){
     document.getElementById('sidebar').appendChild(eachIcon)
     const file = item.file
     eachIcon.onclick = async function(){
+      document.getElementById('first-window').hidden = true
       if(item.opened == false){
         let value = await eel.get_html(file)();
         var doc = new DOMParser().parseFromString(value, "text/html");
@@ -177,6 +186,49 @@ window.onload = async function(){
             div.appendChild(openBut)
             document.getElementById('api-his-inner').appendChild(div)
           })
+        })
+        firebase.database().ref(firebase.auth().currentUser.uid+'/apiSaved').once('value', function(snap){
+          var data = snap.val()
+          Object.keys(data).map((key, index) => {
+            const api = data[key]
+            var div = document.createElement('div')
+            div.id = 'each-api-his'
+            var urlP = document.createElement('p')
+            urlP.innerText = api.url
+            urlP.classList.add('api-hist-url')
+            var typeP = document.createElement('p')
+            typeP.innerText = api.type
+            typeP.classList.add('api-hist-type')
+            var codeP = document.createElement('p')
+            codeP.innerText = `${api.name}`
+            codeP.classList.add('api-hist-code')
+            var openBut = document.createElement('button')
+            openBut.innerText = 'Open'
+            openBut.classList.add('panel-but')
+            openBut.style.float = 'right'
+            if(api.type == 'get'){
+              typeP.style.color = 'rgba(0,255,0)'
+              typeP.style.border = '1px solid rgba(0,255,0)'
+            }
+            else if(api.type == 'delete'){
+              typeP.style.color = 'rgba(255,0,0)'
+              typeP.style.border = '1px solid rgba(255,0,0)'
+            }
+            div.appendChild(codeP)
+            div.appendChild(urlP)
+            div.appendChild(typeP)
+            div.appendChild(openBut)
+            document.getElementById('api-saved-inner').appendChild(div)
+          })
+        })
+      }
+      else if (item.name == 'Account'){
+        firebase.database().ref(firebase.auth().currentUser.uid).once('value').then((snap)=>{
+          const details = snap.val()
+          document.getElementById('email-tag').innerText = `Email: ${firebase.auth().currentUser.email}`
+          document.getElementById('uid').innerText = `${firebase.auth().currentUser.uid}`
+          document.getElementById('license').innerText = `${details.licenseKey}`
+          document.getElementById('join-date').innerText = `Account Created: ${firebase.auth().currentUser.metadata.creationTime}`
         })
       }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){

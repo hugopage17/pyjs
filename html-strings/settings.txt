@@ -1,0 +1,11 @@
+<div class='panel-wrapper' name='settings'>
+  <div class='account-wrapper'>
+    <label class='labels' id='email-tag' style="margin-right:40px;"></label><br/>
+    <label class='labels' style="margin-right:20px;">User ID: <label id='uid' class='labels'></label></label><br/>
+    <label class='labels' style="margin-right:20px;">license Key: <label id='license' class='labels'></label></label><br/>
+    <label class='labels' id='join-date' style="margin-right:20px;"></label><br/>
+  </div>
+  <div style='margin-top:20px;'>
+    <button class='panel-but' style='font-size:16px;' onclick='logout()'>Logout</button>
+  </div>
+</div>

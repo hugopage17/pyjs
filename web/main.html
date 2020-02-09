@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Python JS</title>
+    <title>X-Vyper</title>
     <script type="text/javascript" src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="/app.js"></script>
@@ -32,13 +32,26 @@
         }
 
       firebase.initializeApp(firebaseConfig)
+
+      function signupEmail(){
+        const email = document.getElementById('login-email').value
+        const pw = document.getElementById('login-pw').value
+        firebase.auth().signInWithEmailAndPassword(email,pw).then((result) => {
+          location.reload();
+        })
+      }
+
       function signupGoogle(){
-        let profileURL
         var provider = new firebase.auth.GoogleAuthProvider();
-        var exists = false
         firebase.auth().signInWithPopup(provider).then((result) => {
-          var token = result.credential.accessToken;
-          var user = result.user;
+          location.reload();
+        })
+      }
+
+      function signupMicrosoft(){
+        var provider = new firebase.auth.OAuthProvider('microsoft.com');
+        firebase.auth().signInWithPopup(provider).then((result) => {
+          location.reload();
         })
       }
 
@@ -51,6 +64,7 @@
             firebase.database().ref(id).update({activated:true})
             Swal.fire({
               icon:'success',
+              background:'#4d4d4d',
               text: 'Your account is now activated'
             }).then(()=>{
               document.getElementById('activate-wrapper').hidden = true
@@ -59,6 +73,7 @@
           else{
             Swal.fire({
               icon:'error',
+              background:'#4d4d4d',
               text: 'Invalid License Key'
             })
             document.getElementById('license-key').value = ''
@@ -92,14 +107,14 @@
           <h1>Login Below</h1>
         </div>
         <div style='padding:10px;'>
-          <input class='panel-input' placeholder="email" type='email' style='width:100%;font-size:16px;margin-bottom:40px;'/>
-          <input class='panel-input' style='width:100%;font-size:16px;margin-bottom:40px;' placeholder='password' type='password'/>
-          <button class='panel-but' style='width:100%;'>Login</button>
+          <input class='panel-input' placeholder="email" type='email' style='width:100%;font-size:16px;margin-bottom:40px;' id='login-email'/>
+          <input class='panel-input' style='width:100%;font-size:16px;margin-bottom:40px;' placeholder='password' type='password' id='login-pw'/>
+          <button class='panel-but' style='width:100%;' onclick='signupEmail()'>Login</button>
         </div>
         <div style='border-top:1px solid #009de0;'>
           <p>Or sign in with</p>
           <a class="zocial google" onclick='signupGoogle()'>Google</a>
-          <a class="zocial microsoft">Microsoft</a>
+          <a class="zocial microsoft" onclick='signupMicrosoft()'>Microsoft</a>
         </div>
       </div>
     </div>
@@ -112,9 +127,16 @@
       </div>
     </div>
     <div id='wrapper'>
-      <div id='top-bar'><p id='user'></p></div>
+      <div id='top-bar'>
+        <img src='images/title-icon.png' style='width:10%;float:left;margin-left:10px;'/>
+        <p id='user'></p></div>
       <div id='sidebar'></div>
-      <div id='main-panel'></div>
+      <div id='main-panel'>
+        <div style='position:absolute;left:35%;top:20%;' id='first-window'>
+          <img src='images/main-icon.png' style='width:100%;margin:auto;'/><br/>
+          <p style='color:#009de0;text-align:center;'>X-Vyper version 1.0 - 2020</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>

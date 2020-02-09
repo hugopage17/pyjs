@@ -8,7 +8,7 @@
     </select>
     <input placeholder='API Endpoint ' class='panel-input' id='api-input' style='width:70%;' value='https://jsonplaceholder.typicode.com/todos/'></input>
     <button onclick="apiRequest()" class='panel-but' style="margin-right:10px;">Enter</button>
-    <button onclick="apiSave()" class='panel-but' style="margin-right:10px;">Save</button>
+    <button onclick='openSaveBox()' class='panel-but' style="margin-right:10px;" >Save</button>
   </div>
   <div style='margin-top:10px;'>
     <div style='display:inline-block;width:49%;color:white;'>
@@ -32,11 +32,26 @@
   <label id='res-code' style='color:white;margin-right:10px;font-size:12px;'></label>
   <label id='res-time' style='color:white;font-size:12px;'></label>
   <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;' onclick='apiHistory()'>History</label>
-  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;margin-right:20px;' onclick='apiHistory()'>Saved</label>
-  <div class='background-wrapper' hidden='true' id='api-wrapper'>
+  <label style='color:#009de0;float:right;cursor:pointer;font-size:12px;margin-right:20px;' onclick='openSavedApi()'>Saved</label>
 
+  <div class='background-wrapper' id='api-save-wrapper' hidden='true'>
+    <div id='api-save-inner' style='overflow:auto;'>
+      <label style='color:#009de0;cursor:pointer;padding:5px;font-size:14px;margin-right:20px;' onclick='openSaveBox()'>Close</label><br/>
+      <input id='api-saved-name' class='panel-input' placeholder='Name' style='width:90%;margin:auto;padding:5px;'/><br/>
+      <textarea id='api-save-desc' placeholder='Description...'></textarea>
+      <button class='panel-but' style='width:90%;margin:auto;' onclick='apiSave()'>Save</button>
+    </div>
+  </div>
+
+  <div class='background-wrapper' hidden='true' id='api-wrapper'>
     <div id='api-his-inner' style='overflow:auto;'>
       <label style='color:#009de0;cursor:pointer;padding:5px;font-size:14px;margin-right:20px;' onclick='apiHistory()'>Close</label>
+    </div>
+  </div>
+
+  <div class='background-wrapper' hidden='true' id='api-saved-wrapper'>
+    <div id='api-saved-inner' style='overflow:auto;'>
+      <label style='color:#009de0;cursor:pointer;padding:5px;font-size:14px;margin-right:20px;' onclick='openSavedApi()'>Close</label>
     </div>
   </div>
 </div>
