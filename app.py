@@ -192,7 +192,7 @@ def export_ip_scan(data):
 @eel.expose
 def connect(user,host):
     cmd = '{}@{}'.format(user, host)
-    subprocess.Popen(['ssh', cmd])
+    subprocess.call('start /wait python test.py {} {}'.format(user,host), shell=True)
 
 @eel.expose
 def flood_ping(dst, timeout, size):
