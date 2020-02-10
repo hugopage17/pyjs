@@ -82,7 +82,6 @@ async function pingFunc(){
 }
 
 let runPing
-
 function startPing() {
   runPing = setInterval(pingFunc,document.getElementById('timeout').value)
   var add = document.getElementById('ping-host-name').value
@@ -91,6 +90,7 @@ function startPing() {
   var addString = addName[0].concat(addName[1],addName[2],addName[3])
   obj[addString] = add
   firebase.database().ref(firebase.auth().currentUser.uid+'/pingHistory/'+addString).set(obj)
+  analytics.logEvent('used_ping', { ip: add});
 }
 
 function stopPing(){
@@ -148,6 +148,7 @@ async function startScan(){
   }
   barConfig.data.datasets[0].data = signals
   window.myLine.update()
+  firebase.analytics().logEvent('used_wifi_scan');
 }
 
 async function wifiAnalysis(){
@@ -197,6 +198,7 @@ function switchWifiGraph(){
 let runCT
 
 function startCP(){
+  firebase.analytics().logEvent('used_traffic_capture');
   runCT = setInterval(captureTraffic, 1000)
 }
 
@@ -205,6 +207,7 @@ function stopCP(){
 }
 
 async function startIPScan(){
+  firebase.analytics().logEvent('used_ip_scan');
   range = document.getElementById('ip-range').value
   if(range != ''){
     document.getElementById('spinner').hidden = false
@@ -312,6 +315,7 @@ async function exportIpScan(){
 }
 
 async function startConnection(){
+  firebase.analytics().logEvent('used_connection');
   const user = document.getElementById('user-connection').value
   const host = document.getElementById('connection-host').value
   let start = await eel.connect(user, host)()
@@ -321,6 +325,7 @@ async function startConnection(){
 
 let prs = []
 async function floodPing(){
+  firebase.analytics().logEvent('used_flood_ping');
   const host = document.getElementById('fp-host').value
   const timeout = document.getElementById('fp-timeout').value
   const packets = document.getElementById('fp-packets').value
@@ -365,10 +370,11 @@ function showLogs(){
 async function launchServer(){
   const port = document.getElementById('server-port').value
   let serve = await eel.launch_server(port)();
-  alert('hello')
+  firebase.analytics().logEvent('used_server');
 }
 
 async function startTrace(){
+  firebase.analytics().logEvent('used_trace');
   document.getElementById('trace-loader').hidden = false
   document.getElementById('trace-res').hidden = true
   const dst = document.getElementById('trace-dst').value
@@ -379,6 +385,7 @@ async function startTrace(){
 }
 
 async function apiRequest(){
+  firebase.analytics().logEvent('used_api_tester');
   const url = document.getElementById('api-input').value
   const reqType = document.getElementById('api-req-type').value
   var headerKeys = document.getElementsByClassName('header-key-input')

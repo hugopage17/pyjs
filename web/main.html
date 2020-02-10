@@ -19,6 +19,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
       var firebaseConfig = {
           apiKey: "AIzaSyAhGIOWLl2PxgB569Jz_tXX-pk1khA3vlQ",
@@ -29,9 +31,9 @@
           messagingSenderId: "427192647830",
           appId: "1:427192647830:web:f57900a1ee8d44a1e8c2b7",
           measurementId: "G-1CX57NKSPP"
-        }
-
+      }
       firebase.initializeApp(firebaseConfig)
+      const analytics = firebase.analytics()
 
       function signupEmail(){
         const email = document.getElementById('login-email').value
