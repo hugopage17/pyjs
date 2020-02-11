@@ -10,4 +10,3 @@ try:
     subprocess.Popen(['ssh', cmd])
 except:
     print('failed to connect to {}'.format(host))
-input('')
