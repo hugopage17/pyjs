@@ -190,9 +190,9 @@ def export_ip_scan(data):
     f.close()
 
 @eel.expose
-def connect(user,host):
+def connect(user,host, type):
     cmd = '{}@{}'.format(user, host)
-    subprocess.call('start /wait python test.py {} {}'.format(user,host), shell=True)
+    subprocess.call('start /wait python test.py {} {} {}'.format(user,host, type), shell=True)
 
 @eel.expose
 def flood_ping(dst, timeout, size):

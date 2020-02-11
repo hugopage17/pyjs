@@ -315,11 +315,18 @@ async function exportIpScan(){
 }
 
 async function startConnection(){
-  firebase.analytics().logEvent('used_connection');
+  let type
+  if(document.getElementById('ssh-radio').checked == true){
+    type = 'ssh'
+  }else if(document.getElementById('telnet-radio').checked == true){
+    type = 'telnet'
+  }else if(document.getElementById('serial-radio').checked == true){
+    type = 'serial'
+  }
+  firebase.analytics().logEvent('used_connection',{type:type});
   const user = document.getElementById('user-connection').value
   const host = document.getElementById('connection-host').value
-  let start = await eel.connect(user, host)()
-  alert('Connected to '+host)
+  let start = await eel.connect(user, host, type)()
 }
 
 

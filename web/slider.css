@@ -73,6 +73,7 @@ input:checked + .slider:before {
   -ms-user-select: none;
   user-select: none;
   margin-right: 50px;
+  text-align: center;
 }
 
 /* Hide the browser's default radio button */

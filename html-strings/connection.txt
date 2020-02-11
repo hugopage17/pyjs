@@ -1,18 +1,18 @@
 <div class='panel-wrapper' name='connection'>
   <div style='border:1px solid #009de0;padding:10px;margin:auto;text-align:center;color:white;width:60%;background:#4d4d4d;'>
-    <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='10.16.55.146' style='width:40%;'/>
-    <input id='user-connection' placeholder='Username' class='panel-input' value='admin' style='width:40%;'/><br/><br/>
+    <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='test.rebex.net' style='width:40%;'/>
+    <input id='user-connection' placeholder='Username' class='panel-input' value='demo' style='width:40%;'/><br/><br/>
 
     <label class="radio-container">SSH
-      <input type="radio" value='ssh' name='r-buts' checked='checked'>
+      <input type="radio" value='ssh' name='r-buts' checked='checked' id='ssh-radio'>
       <span class="radio-checkmark"></span>
     </label>
     <label class="radio-container">Telnet
-      <input type="radio" value='telnet' name='r-buts'>
+      <input type="radio" value='telnet' name='r-buts' id='telnet-radio'>
       <span class="radio-checkmark"></span>
     </label>
     <label class="radio-container">Serial
-      <input type="radio" value='serial' name='r-buts'>
+      <input type="radio" value='serial' name='r-buts' id='serial-radio'>
       <span class="radio-checkmark"></span>
     </label><br/><br/>
     <button onclick="startConnection()" class='panel-but' style="margin-right:10px;width:80%;">Start</button><br/>
