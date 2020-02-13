@@ -92,9 +92,14 @@ window.onload = async function(){
         text: 'You are not connected to the internet'
       })
     }
-    setTimeout(()=>{
-      document.getElementById('user').innerText = `Welcome ${firebase.auth().currentUser.displayName}`
-    },1000)
+    const p = new Promise((res, rej) => {
+      setTimeout(()=>{
+        res(firebase.auth().currentUser.displayName)
+      },1000)
+    })
+    p.then((user)=>{
+      document.getElementById('user').innerText = `Welcome ${user}`
+    })
   let nic = await eel.get_nic()()
   nicData = nic
   sidebarItems.map((item)=>{
@@ -229,6 +234,14 @@ window.onload = async function(){
           document.getElementById('uid').innerText = `${firebase.auth().currentUser.uid}`
           document.getElementById('license').innerText = `${details.licenseKey}`
           document.getElementById('join-date').innerText = `Account Created: ${firebase.auth().currentUser.metadata.creationTime}`
+        })
+      }
+      else if (item.name == 'Connection'){
+        firebase.database().ref(firebase.auth().currentUser.uid+'/connSessions').once('value').then((snap)=>{
+          const data = snap.val()
+          if (data != 0){
+            document.getElementById('saved-conn-sess').hidden = false
+          }
         })
       }
       for (var i = 0; i < document.getElementsByTagName("canvas").length; i++){

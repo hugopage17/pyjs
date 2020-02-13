@@ -1,20 +1,29 @@
 <div class='panel-wrapper' name='connection'>
-  <div style='border:1px solid #009de0;padding:10px;margin:auto;text-align:center;color:white;width:60%;background:#4d4d4d;'>
-    <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='test.rebex.net' style='width:40%;'/>
-    <input id='user-connection' placeholder='Username' class='panel-input' value='demo' style='width:40%;'/><br/><br/>
+  <div style='border:1px solid #009de0;margin:auto;text-align:center;color:white;width:60%;background:#4d4d4d;'>
+    <div style='border-bottom:1px solid #009de0;padding:10px;'>
+      <input id='connection-host' placeholder='Host Name or IP Address' class='panel-input' value='test.rebex.net' style='width:40%;'/>
+      <input id='user-connection' placeholder='Username' class='panel-input' value='demo' style='width:40%;'/><br/><br/>
+    </div>
+    <div style='border-bottom:1px solid #009de0;padding:10px;margin:auto;'>
+      <label class="radio-container">SSH
+        <input type="radio" value='ssh' name='r-buts' checked='checked' id='ssh-radio'>
+        <span class="radio-checkmark"></span>
+      </label>
+      <label class="radio-container">Telnet
+        <input type="radio" value='telnet' name='r-buts' id='telnet-radio'>
+        <span class="radio-checkmark"></span>
+      </label>
+      <label class="radio-container">Serial
+        <input type="radio" value='serial' name='r-buts' id='serial-radio'>
+        <span class="radio-checkmark"></span>
+      </label>
+    </div>
+    <div style='border-bottom:1px solid #009de0;padding:10px;'>
+      <button onclick="startConnection()" class='panel-but' style="margin-right:10px;width:80%;">Start</button>
+      <button class='panel-but' style="margin-right:10px;width:80%;margin-top:10px;" onclick="saveConnSess()">Save Session</button>
+    </div>
+  </div>
+  <div id='saved-conn-sess' hidden='true'>
 
-    <label class="radio-container">SSH
-      <input type="radio" value='ssh' name='r-buts' checked='checked' id='ssh-radio'>
-      <span class="radio-checkmark"></span>
-    </label>
-    <label class="radio-container">Telnet
-      <input type="radio" value='telnet' name='r-buts' id='telnet-radio'>
-      <span class="radio-checkmark"></span>
-    </label>
-    <label class="radio-container">Serial
-      <input type="radio" value='serial' name='r-buts' id='serial-radio'>
-      <span class="radio-checkmark"></span>
-    </label><br/><br/>
-    <button onclick="startConnection()" class='panel-but' style="margin-right:10px;width:80%;">Start</button><br/>
   </div>
 </div>

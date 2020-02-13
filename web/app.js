@@ -329,6 +329,48 @@ async function startConnection(){
   let start = await eel.connect(user, host, type)()
 }
 
+function saveConnSess(){
+  let type
+  if(document.getElementById('ssh-radio').checked == true){
+    type = 'ssh'
+  }else if(document.getElementById('telnet-radio').checked == true){
+    type = 'telnet'
+  }else if(document.getElementById('serial-radio').checked == true){
+    type = 'serial'
+  }
+  const user = document.getElementById('user-connection').value
+  const host = document.getElementById('connection-host').value
+  Swal.fire({
+    icon:'info',
+    title:'Session name',
+    input:'text',
+    background:'#4d4d4d',
+    inputPlaceholder:'Save as',
+    showCancelButton: true
+  }).then((value)=>{
+    if(value.dismiss == 'cancel'){
+      null
+    }else{
+      firebase.database().ref(firebase.auth().currentUser.uid+'/connSessions/'+value.value).set({
+        host:host,
+        user:user,
+        type:type
+      }).then(()=>{
+        Swal.fire({
+          icon:'success',
+          background:'#4d4d4d',
+          text:`${type} session to ${host} saved`
+        })
+      }).catch((err)=>{
+        Swal.fire({
+          icon:'error',
+          text:err,
+          background:'#4d4d4d'
+        })
+      })
+    }
+  })
+}
 
 let prs = []
 async function floodPing(){

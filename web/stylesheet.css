@@ -496,6 +496,15 @@ textarea {resize: none}
   border-radius: 5px;
 }
 
+#saved-conn-sess{
+  height: 40vh;
+  width:100%;
+  margin: auto;
+  margin-top: 120px;
+  border:1px solid #009de0;
+  background-color: #4d4d4d;
+}
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;

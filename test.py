@@ -7,10 +7,10 @@ from termcolor import colored
 import os
 init()
 
-os.system('color 89')
-
+print('',Fore.CYAN)
 ascii_banner = pyfiglet.figlet_format('X-VYPER')
 print(ascii_banner)
+Style.RESET_ALL
 
 
 user = sys.argv[1]
@@ -21,7 +21,6 @@ cmd = '{}@{}'.format(user, host)
 try:
     if type == 'ssh':
         print('Establishing ssh connection to {} as {}'.format(host, user))
-        os.system('color 89')
         subprocess.Popen(['ssh', cmd])
     elif type == 'telnet':
         subprocess.Popen(['telnet', host])
