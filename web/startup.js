@@ -243,6 +243,7 @@ window.onload = async function(){
             document.getElementById('saved-conn-sess').hidden = false
             Object.keys(data).map((key, index) => {
               var div = document.createElement('div')
+              div.classList.add('each-sess')
               var host = document.createElement('label')
               host.innerText = `Host: ${data[key].host}`
               var user = document.createElement('label')
@@ -253,6 +254,9 @@ window.onload = async function(){
               var but = document.createElement('button')
               but.classList.add('panel-but')
               but.innerText = 'Connect'
+              but.onclick = function(){
+                eel.connect(userVal.value, data[key].host, data[key].type)()
+              }
               div.appendChild(host)
               div.appendChild(user)
               div.appendChild(userVal)

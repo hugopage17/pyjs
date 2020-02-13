@@ -505,6 +505,16 @@ textarea {resize: none}
   background-color: #4d4d4d;
 }
 
+.each-sess{
+  border-bottom: 1px solid #009de0;
+  color:white;
+  padding: 10px;
+}
+
+.each-sess label{
+  margin-right: 40px;
+}
+
 @media only screen and (max-width: 1240px){
   #sidebar{
     font-size: 12px;
