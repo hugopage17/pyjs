@@ -241,6 +241,24 @@ window.onload = async function(){
           const data = snap.val()
           if (data != 0){
             document.getElementById('saved-conn-sess').hidden = false
+            Object.keys(data).map((key, index) => {
+              var div = document.createElement('div')
+              var host = document.createElement('label')
+              host.innerText = `Host: ${data[key].host}`
+              var user = document.createElement('label')
+              user.innerText = 'Connect as'
+              var userVal = document.createElement('input')
+              userVal.value = data[key].user
+              userVal.classList.add('panel-input')
+              var but = document.createElement('button')
+              but.classList.add('panel-but')
+              but.innerText = 'Connect'
+              div.appendChild(host)
+              div.appendChild(user)
+              div.appendChild(userVal)
+              div.appendChild(but)
+              document.getElementById('saved-conn-sess').appendChild(div)
+            })
           }
         })
       }
