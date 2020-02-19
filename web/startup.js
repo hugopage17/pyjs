@@ -95,11 +95,11 @@ window.onload = async function(){
     const p = new Promise((res, rej) => {
       setTimeout(()=>{
         res(firebase.auth().currentUser.displayName)
-      },1000)
+      },100)
     })
     p.then((user)=>{
       document.getElementById('user').innerText = `Welcome ${user}`
-    })
+    }).catch((err) => {console.log('err')})
   let nic = await eel.get_nic()()
   nicData = nic
   sidebarItems.map((item)=>{
@@ -140,6 +140,14 @@ window.onload = async function(){
         })
         ctx = document.getElementById('myChart').getContext('2d');
         window.myLine = new Chart(ctx, config);
+        document.getElementById("myChart").onclick = function(evt){
+            var activePoint = window.myLine.lastActive[0];
+            var datasetIndex = activePoint._datasetIndex;
+            var index = activePoint._index;
+            var datasetName = config.data.datasets[datasetIndex].label;
+            var dataValue = config.data.datasets[datasetIndex].data[index];
+            console.log(dataValue);
+        };
       }else if(item.name == 'Wifi Scan'){
         ctx = document.getElementById('myScanChart').getContext('2d');
         window.myLine = new Chart(ctx, barConfig);
@@ -242,26 +250,29 @@ window.onload = async function(){
           if (data != 0){
             document.getElementById('saved-conn-sess').hidden = false
             Object.keys(data).map((key, index) => {
-              var div = document.createElement('div')
+              var div = document.createElement('tr')
               div.classList.add('each-sess')
-              var host = document.createElement('label')
+              var host = document.createElement('th')
               host.innerText = `Host: ${data[key].host}`
-              var user = document.createElement('label')
+              var user = document.createElement('th')
               user.innerText = 'Connect as'
               var userVal = document.createElement('input')
               userVal.value = data[key].user
               userVal.classList.add('panel-input')
+              userVal.style.marginLeft = '10px'
               var but = document.createElement('button')
+              var butTh = document.createElement('th')
               but.classList.add('panel-but')
               but.innerText = 'Connect'
               but.onclick = function(){
                 eel.connect(userVal.value, data[key].host, data[key].type)()
               }
+              butTh.appendChild(but)
               div.appendChild(host)
               div.appendChild(user)
-              div.appendChild(userVal)
-              div.appendChild(but)
-              document.getElementById('saved-conn-sess').appendChild(div)
+              user.appendChild(userVal)
+              div.appendChild(butTh)
+              document.getElementById('saved-conn-table').appendChild(div)
             })
           }
         })

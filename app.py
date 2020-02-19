@@ -121,16 +121,19 @@ def export():
 def capture_traffic(ip):
     tx_rate = 0
     pkt = sniff(count=100,filter="host "+ip, timeout=10)
+    arr = []
     for p in range(len(pkt)):
         new_p = raw(pkt[p])
         tx_rate += len(new_p)
+        arr.append(hexdump(pkt[p]).decode("ascii"))
     tx_rate = tx_rate/1000
     each_type = str(pkt).split(' ')
     each_type[4] = str(each_type[4]).split('>')[0]
     packet_types = [each_type[1], each_type[2], each_type[3], each_type[4]]
     obj = {
         'rate':tx_rate,
-        'types':packet_types
+        'types':packet_types,
+        'hex_data':arr
     }
     return obj
 

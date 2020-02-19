@@ -15,5 +15,6 @@
     <label class='labels' id='icmp' style="margin-right:20px;"></label>
     <label class='labels' id='other' style="margin-right:20px;"></label>
   </div>
-  <div></div>
+  <div id='packet-displayer'>
+  </div>
 </div>

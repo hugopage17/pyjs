@@ -497,12 +497,13 @@ textarea {resize: none}
 }
 
 #saved-conn-sess{
-  height: 40vh;
-  width:100%;
+  height: 50vh;
+  width:60%;
   margin: auto;
-  margin-top: 120px;
+  margin-top: 20px;
   border:1px solid #009de0;
   background-color: #4d4d4d;
+  overflow: auto;
 }
 
 .each-sess{
@@ -513,6 +514,19 @@ textarea {resize: none}
 
 .each-sess label{
   margin-right: 40px;
+}
+
+#packet-displayer{
+  overflow: auto;
+  height: 50vh;
+  border: 1px solid #009de0;
+  color:white;
+  background-color: #4d4d4d;
+}
+
+.each-packet-disp{
+  border-bottom: 1px solid rgba(54, 162, 235, 0.5);
+  padding:10px;
 }
 
 @media only screen and (max-width: 1240px){

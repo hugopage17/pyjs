@@ -24,6 +24,8 @@
     </div>
   </div>
   <div id='saved-conn-sess' hidden='true'>
-
+    <table id='saved-conn-table' style='width:100%;'>
+      <h1 style='text-align:center;border-bottom:1px solid #009de0;'>Saved Sessions</h1>
+    </table>
   </div>
 </div>

@@ -183,6 +183,12 @@ async function captureTraffic(){
   document.getElementById('udp').innerText = traffic.types[1]
   document.getElementById('icmp').innerText = traffic.types[2]
   document.getElementById('other').innerText = traffic.types[3]
+  for (var i = 0; i < traffic.hex_data.length; i++) {
+    var div = document.createElement('div')
+    div.classList.add('each-packet-disp')
+    div.innerText = traffic.hex_data[i]
+    document.getElementById('packet-displayer').appendChild(div)
+  }
 }
 
 function switchWifiGraph(){
@@ -342,7 +348,7 @@ function saveConnSess(){
   const host = document.getElementById('connection-host').value
   Swal.fire({
     icon:'info',
-    title:'Session name',
+    title:'New Session',
     input:'text',
     background:'#4d4d4d',
     inputPlaceholder:'Save as',
